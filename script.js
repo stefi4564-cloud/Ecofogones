@@ -156,6 +156,69 @@ closeCart.addEventListener('click', closeCartFn);
 cartBackdrop.addEventListener('click', closeCartFn);
 checkoutBtn.addEventListener('click', checkout);
 
+// Carrito de Compras con despliegue lateral
+
+const carrito = [];
+const btnAbrirCarrito = document.getElementById('btn-carrito');
+const carritoAside = document.getElementById('carrito');
+const btnCerrarCarrito = document.getElementById('cerrar-carrito');
+const listaCarrito = document.getElementById('lista-carrito');
+const totalCarrito = document.getElementById('total-carrito');
+
+function actualizarCarrito() {
+  listaCarrito.innerHTML = '';
+
+  let total = 0;
+  carrito.forEach((producto, index) => {
+    total += producto.precio;
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span><strong>${producto.nombre}</strong></span>
+      <span>Precio: $${producto.precio.toLocaleString()}</span>
+      <button class="eliminar-producto" data-index="${index}">Eliminar</button>
+    `;
+    listaCarrito.appendChild(li);
+  });
+
+  totalCarrito.textContent = `Total: $${total.toLocaleString()}`;
+
+  // Agregar eventos para eliminar productos
+  document.querySelectorAll('.eliminar-producto').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const idx = parseInt(e.target.dataset.index);
+      carrito.splice(idx, 1);
+      actualizarCarrito();
+    });
+  });
+}
+
+btnAbrirCarrito.addEventListener('click', () => {
+  carritoAside.classList.add('visible');
+});
+
+btnCerrarCarrito.addEventListener('click', () => {
+  carritoAside.classList.remove('visible');
+});
+
+document.querySelectorAll('.agregar-carrito').forEach(button => {
+  button.addEventListener('click', () => {
+    const productoDiv = button.parentElement;
+    const nombre = productoDiv.querySelector('h3').innerText;
+    const precioTexto = productoDiv.querySelector('p').innerText;
+    const precio = parseInt(precioTexto.replace(/[^0-9]/g, ''), 10);
+
+    carrito.push({ nombre, precio });
+    actualizarCarrito();
+  });
+});
+
+
+
+
+
+
+
+
 /* Inicializar */
 renderProducts();
 renderCart();
