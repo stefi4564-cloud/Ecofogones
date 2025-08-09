@@ -1,119 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ecofogones — La Plata, Huila</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ecofogones - Fogones Eficientes</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <h1>Ecofogones</h1>
-      <small>La Plata, Huila — Fogones ahorradores de leña</small>
-    </div>
+
+  <!-- Menú de Navegación -->
+  <header>
     <nav>
-      <button id="cart-btn" aria-label="Abrir carrito">🛒 <span id="cart-count">0</span></button>
+      <div class="logo">Ecofogones</div>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#mision-vision">Misión y Visión</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><button id="btn-carrito" aria-label="Abrir carrito"><i class="fas fa-shopping-cart"></i></button></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <h2>Fogones ahorradores — calidez y cuidado del bosque</h2>
-        <p>Diseñados para ahorrar leña y reducir emisiones. Envíos y asesoría en La Plata, Huila.</p>
-        <a class="cta" href="#productos">Ver productos</a>
-      </div>
-    </section>
-
-    <section id="productos" class="products-section">
-      <h3>Nuestros modelos</h3>
-      <div id="products-grid" class="products-grid">
-        <!-- Productos se inyectan con JavaScript -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Modal / Carrito -->
-  <div id="cart-modal" class="cart-modal hidden">
-    <div class="cart-panel">
-      <button id="close-cart" class="close">✕</button>
-      <h4>Tu carrito</h4>
-      <div id="cart-items"></div>
-      <div class="cart-summary">
-        <div>Total: <strong id="cart-total">$0</strong></div>
-        <button id="checkout-btn" class="checkout">Pedir por WhatsApp</button>
-      </div>
-    </div>
-    <div class="cart-backdrop" id="cart-backdrop"></div>
-  </div>
-
-  <footer class="site-footer">
-    <div>
-      <strong>Ecofogones</strong> — La Plata, Huila<br>
-      <a href="https://wa.me/573148673011" target="_blank" id="whatsapp-footer">WhatsApp: Haz tu pedido</a>
-    </div>
-    <small>© <span id="year"></span> Ecofogones</small>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecofogones - Fogones Ahorradores de Leña</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-text">
-      <h1>Ecofogones</h1>
-      <p>Fogones ahorradores de leña desde La Plata, Huila</p>
-      <a href="#productos" class="btn-primary">Ver productos</a>
-    </div>
-  </header>
-
-  <!-- Sobre nosotros -->
-  <section id="sobre-nosotros" class="about">
-    <h2>Sobre Nosotros</h2>
-    <p>En Ecofogones fabricamos y distribuimos fogones ahorradores de leña que reducen el consumo de combustible y protegen el medio ambiente. Nuestro compromiso es con la sostenibilidad, la salud de las familias y el desarrollo de la comunidad en La Plata, Huila.</p>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Bienvenido a Ecofogones</h1>
+    <p>Soluciones sostenibles para tu cocina</p>
+    <a href="#productos" class="btn">Ver Productos</a>
   </section>
 
   <!-- Productos -->
   <section id="productos" class="productos">
     <h2>Nuestros Productos</h2>
-    <div class="grid">
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1606787364410-8e4b3d87aa94" alt="Fogón 1">
-        <h3>Fogón Tradicional</h3>
-        <p>$450.000</p>
-      </div>
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b" alt="Fogón 2">
-        <h3>Fogón Familiar</h3>
-        <p>$650.000</p>
-      </div>
-      <div class="producto">
-        <img src="https://images.unsplash.com/photo-1603422553494-3f0e8e3dabe4" alt="Fogón 3">
-        <h3>Fogón Industrial</h3>
-        <p>$1.200.000</p>
-      </div>
+    <div class="producto">
+      <img src="https://images.unsplash.com/photo-1606787364410-8e4b3d87aa94" alt="Fogón Tradicional" />
+      <h3>Fogón Tradicional</h3>
+      <p>$450.000</p>
+      <button class="agregar-carrito">Agregar al Carrito</button>
     </div>
+    <div class="producto">
+      <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b" alt="Fogón Familiar" />
+      <h3>Fogón Familiar</h3>
+      <p>$650.000</p>
+      <button class="agregar-carrito">Agregar al Carrito</button>
+    </div>
+    <div class="producto">
+      <img src="https://images.unsplash.com/photo-1603422553494-3f0e8e3dabe4" alt="Fogón Industrial" />
+      <h3>Fogón Industrial</h3>
+      <p>$1.200.000</p>
+      <button class="agregar-carrito">Agregar al Carrito</button>
+    </div>
+  </section>
+
+  <!-- Sobre Nosotros -->
+  <section id="sobre-nosotros" class="sobre-nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>En Ecofogones nos dedicamos a la fabricación y distribución de fogones eficientes que contribuyen al ahorro de leña y a la protección del medio ambiente.</p>
+  </section>
+
+  <!-- Misión y Visión -->
+  <section id="mision-vision" class="mision-vision">
+    <div>
+      <h3>Misión</h3>
+      <p>Proveer soluciones de cocina sostenibles que mejoren la calidad de vida de las familias colombianas.</p>
+    </div>
+    <div>
+      <h3>Visión</h3>
+      <p>Ser líderes en innovación y sostenibilidad en el sector de fogones en Colombia para 2030.</p>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <p>Teléfono: 31486730111</p>
+    <p>Email: contacto@ecofogones.com</p>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Ecofogones | La Plata, Huila | Tel: 321 456 7890</p>
+    <p>&copy; 2025 Ecofogones. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Botón flotante WhatsApp -->
-  <a href="https://wa.me/573148673011" class="whatsapp" target="_blank">💬</a>
+  <!-- Botón Flotante de WhatsApp -->
+  <a href="https://wa.me/573148673011" class="whatsapp" target="_blank" aria-label="WhatsApp">💬</a>
 
+  <!-- Carrito desplegable -->
+  <aside id="carrito" class="carrito-oculto" aria-label="Carrito de compras">
+    <header>
+      <h2>Carrito</h2>
+      <button id="cerrar-carrito" aria-label="Cerrar carrito">&times;</button>
+    </header>
+    <ul id="lista-carrito"></ul>
+    <footer>
+      <p id="total-carrito">Total: $0</p>
+    </footer>
+  </aside>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
 
