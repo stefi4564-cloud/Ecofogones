@@ -245,7 +245,7 @@ footer {
 #carrito header {
   padding: 20px;
   background-color: #2e7d32;
-  color: white;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -258,7 +258,7 @@ footer {
 #carrito header button {
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 2rem;
   cursor: pointer;
 }
