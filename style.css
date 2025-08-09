@@ -64,7 +64,7 @@ section {
 .hero {
   background: url('https://images.unsplash.com/photo-1603422553494-3f0e8e3dabe4') no-repeat center center;
   background-size: cover;
-  color: white;
+  color: black;
   text-align: center;
   padding: 120px 20px 80px;
 }
