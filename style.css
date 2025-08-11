@@ -496,6 +496,88 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
 }
 
+/* Contact Section */
+.contacto {
+    padding: 8rem 2rem;
+    background-color: var(--white);
+}
+
+.contacto-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contacto-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.contacto-info p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contacto-info p i {
+    color: var(--secondary-color);
+}
+
+.envios-info {
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: #e8f5e9;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.contacto-form-container {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.contacto-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contacto-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+}
+
+.contacto-form textarea {
+    resize: vertical;
+}
+
+.contacto-form .btn-primary {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.form-note {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 1rem;
+}
+
 
 /* Shopping Cart Modal */
 .carrito-overlay {
@@ -537,21 +619,28 @@ h3 { font-size: 1.5rem; }
     transform: translateX(0);
 }
 
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.carrito-header h3 {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .cerrar-carrito {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-color);
-}
-
-.carrito h3 {
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    text-align: center;
 }
 
 #lista-carrito {
