@@ -37,7 +37,7 @@ const products = [
     },
      {
         id: "eco-400",
-        name: "plato para arado",
+        name: "Plato para arado",
         price: 120000,
         img: "platoaradofogon.png",
         description: "Para uso en restaurantes y cocinas. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
@@ -63,6 +63,17 @@ const formatCurrency = (n) => n.toLocaleString('es-CO', { style: 'currency', cur
 // Variables y Elementos del DOM
 // =================================================================
 let cart = JSON.parse(localStorage.getItem('ecofogones_cart') || '[]');
+let appliedDiscountCode = localStorage.getItem('ecofogones_discount_code') || '';
+let appliedDiscountValue = parseFloat(localStorage.getItem('ecofogones_discount_value')) || 0;
+let isDiscountAppliedFlag = localStorage.getItem('ecofogones_is_discount_applied') === 'true';
+
+if (isDiscountAppliedFlag && appliedDiscountCode) {
+    appliedDiscount = appliedDiscountValue;
+    isDiscountApplied = true;
+    cuponInput.value = appliedDiscountCode;
+}
+
+
 const btnCarrito = document.getElementById('btn-carrito');
 const carritoElement = document.getElementById('carrito');
 const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -79,12 +90,16 @@ const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
 const cuponInput = document.getElementById('cupon-input');
 const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
 const productosGrid = document.querySelector('.productos-grid');
+const contactForm = document.getElementById('contact-form');
 
 // =================================================================
 // Lógica para el carrito de compras
 // =================================================================
 function saveCart() {
     localStorage.setItem('ecofogones_cart', JSON.stringify(cart));
+    localStorage.setItem('ecofogones_discount_code', isDiscountApplied ? cuponInput.value : '');
+    localStorage.setItem('ecofogones_discount_value', appliedDiscount);
+    localStorage.setItem('ecofogones_is_discount_applied', isDiscountApplied);
     updateCartDisplay();
 }
 
@@ -254,6 +269,28 @@ function checkout() {
     window.open(urlWhatsApp, '_blank');
 }
 
+
+function sendContactForm(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('asunto').value;
+    const message = document.getElementById('mensaje').value;
+
+    const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:%0A%0A`
+                          + `*Nombre:* ${name}%0A`
+                          + `*Correo:* ${email}%0A`
+                          + `*Asunto:* ${subject}%0A%0A`
+                          + `*Mensaje:* ${message}`;
+
+    const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(urlWhatsApp, '_blank');
+
+    contactForm.reset();
+}
+
+
 // =================================================================
 // Lógica para la UI y la página
 // =================================================================
@@ -340,6 +377,11 @@ finalizarPedidoBtn.addEventListener('click', checkout);
 aplicarCuponBtn.addEventListener('click', () => {
     applyDiscount(cuponInput.value);
 });
+
+// Evento para el formulario de contacto
+if (contactForm) {
+    contactForm.addEventListener('submit', sendContactForm);
+}
 
 // Evento para añadir productos al carrito (delegado)
 document.addEventListener('click', (event) => {
