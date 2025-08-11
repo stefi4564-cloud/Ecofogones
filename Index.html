@@ -19,6 +19,7 @@
         <nav class="navbar">
             <a href="#hero">Inicio</a>
             <a href="#productos">Productos</a>
+            <a href="#about">Nosotros</a>
             <a href="#contacto">Contacto</a>
         </nav>
         <div class="header-actions">
@@ -43,7 +44,7 @@
                 </div>
             </div>
             <div class="hero-image fade-in">
-                <img src="https://images.unsplash.com/photo-1627916694605-0f62c0199573?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fogón Ecológico Moderno">
+                <img src="URL_DE_LA_NUEVA_IMAGEN" alt="Fogón Ecológico Moderno">
             </div>
         </section>
 
@@ -82,6 +83,10 @@
             <div class="about-content fade-in">
                 <h2 class="section-title">Nuestra Misión</h2>
                 <p>En Ecofogones, creemos en el poder de la innovación para crear un impacto positivo en el medio ambiente y en la calidad de vida de las comunidades. Nuestros fogones no solo son una solución eficiente para cocinar, sino también un paso hacia un futuro más sostenible.</p>
+
+                <h2 class="section-title">Nuestra Visión</h2>
+                <p>Aspiramos a ser líderes en soluciones de cocción ecológica a nivel nacional, promoviendo la sostenibilidad y el bienestar de las familias a través de nuestros productos innovadores y de alta calidad.</p>
+
                 <a href="#contacto" class="btn btn-primary">Conoce más</a>
             </div>
         </section>
@@ -104,15 +109,54 @@
                 </div>
             </div>
         </section>
-        
+
+        <section id="contacto" class="contacto">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-subtitle">Estamos listos para ayudarte. Envíanos un mensaje o contáctanos directamente.</p>
+            </div>
+            <div class="contacto-container fade-in">
+                <div class="contacto-info">
+                    <h3>Información de Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> contacto@ecofogones.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +57 314 867 3011</p>
+                    <p class="envios-info"><i class="fas fa-shipping-fast"></i> Hacemos envíos a nivel nacional</p>
+                    <p>Horario de atención: Lunes a Viernes, 8:00 AM - 5:00 PM</p>
+                </div>
+                <div class="contacto-form-container">
+                    <form id="contact-form" class="contacto-form">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="Tu correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <input type="text" id="asunto" name="asunto" placeholder="Asunto del mensaje" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Tu mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div id="carrito-overlay" class="carrito-overlay"></div>
     <div id="carrito" class="carrito">
-        <button id="cerrar-carrito" class="cerrar-carrito">
-            <i class="fas fa-times"></i>
-        </button>
-        <h3>Carrito de Compras</h3>
+        <div class="carrito-header">
+            <h3><i class="fas fa-shopping-cart"></i> Carrito de Compras</h3>
+            <button id="cerrar-carrito" class="cerrar-carrito">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         <div id="lista-carrito">
             </div>
         <p id="carrito-vacio">El carrito está vacío.</p>
@@ -158,6 +202,7 @@
                 <ul>
                     <li><a href="#hero">Inicio</a></li>
                     <li><a href="#productos">Productos</a></li>
+                    <li><a href="#about">Nosotros</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </div>
