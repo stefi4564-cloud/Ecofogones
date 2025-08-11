@@ -16,6 +16,17 @@ const products = [
         originalPrice: 500000
     },
     {
+        id: "eco-100",
+        name: "Fogón Tradicional",
+        price: 450000,
+        img: "fogontradicional1.png",
+        description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
+        badge: "Más Popular",
+        features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
+        originalPrice: 500000
+    },
+
+    {
         id: "eco-200",
         name: "Fogón de 2 boquillas",
         price: 650000,
@@ -67,13 +78,6 @@ let appliedDiscountCode = localStorage.getItem('ecofogones_discount_code') || ''
 let appliedDiscountValue = parseFloat(localStorage.getItem('ecofogones_discount_value')) || 0;
 let isDiscountAppliedFlag = localStorage.getItem('ecofogones_is_discount_applied') === 'true';
 
-if (isDiscountAppliedFlag && appliedDiscountCode) {
-    appliedDiscount = appliedDiscountValue;
-    isDiscountApplied = true;
-    cuponInput.value = appliedDiscountCode;
-}
-
-
 const btnCarrito = document.getElementById('btn-carrito');
 const carritoElement = document.getElementById('carrito');
 const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -91,6 +95,14 @@ const cuponInput = document.getElementById('cupon-input');
 const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
 const productosGrid = document.querySelector('.productos-grid');
 const contactForm = document.getElementById('contact-form');
+
+
+if (isDiscountAppliedFlag && appliedDiscountCode) {
+    appliedDiscount = appliedDiscountValue;
+    isDiscountApplied = true;
+    cuponInput.value = appliedDiscountCode;
+}
+
 
 // =================================================================
 // Lógica para el carrito de compras
