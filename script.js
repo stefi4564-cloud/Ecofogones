@@ -9,7 +9,7 @@ const products = [
         id: "eco-100",
         name: "Fogón Tradicional",
         price: 450000,
-        img: "https://images.unsplash.com/photo-1606787364410-8e4b3d87aa94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        img: "fogontradicional1.png",
         description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
         badge: "Más Popular",
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
@@ -17,9 +17,9 @@ const products = [
     },
     {
         id: "eco-200",
-        name: "Fogón Familiar",
+        name: "Fogón de 2 boquillas",
         price: 650000,
-        img: "https://images.unsplash.com/photo-1586201375761-83865001e31b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        img: "fogonde2boquillas.png",
         description: "Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.",
         badge: "Recomendado",
         features: ["Gran Capacidad", "Eco-friendly", "Garantía 3 años"],
@@ -27,13 +27,23 @@ const products = [
     },
     {
         id: "eco-300",
-        name: "Fogón Industrial",
+        name: "Fogón de 3 boquillas",
         price: 1200000,
-        img: "https://images.unsplash.com/photo-1603422553494-3f0e8e3dabe4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        img: "fogonde3boquillas.png",
         description: "Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
         badge: "Premium",
         features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
         originalPrice: 1400000
+    },
+     {
+        id: "eco-400",
+        name: "plato para arado",
+        price: 120000,
+        img: "platoaradofogon.png",
+        description: "Para uso en restaurantes y cocinas. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
+        badge: "Premium",
+        features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
+        originalPrice: 140000
     }
 ];
 
@@ -44,7 +54,6 @@ const discountCodes = {
 };
 
 let appliedDiscount = 0;
-let discountPercentage = 0;
 let isDiscountApplied = false;
 
 // Función para formato de moneda (COP)
@@ -121,7 +130,7 @@ function updateCartDisplay() {
     const finalTotal = subtotal - appliedDiscount;
     subtotalCarritoEl.textContent = formatCurrency(subtotal);
     descuentoValorEl.textContent = formatCurrency(appliedDiscount);
-    descuentoPorcentajeEl.textContent = `${(appliedDiscount / subtotal * 100).toFixed(0) || 0}%`;
+    descuentoPorcentajeEl.textContent = `${subtotal > 0 ? (appliedDiscount / subtotal * 100).toFixed(0) : 0}%`;
     totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
     contadorCarrito.textContent = totalItems;
     contadorCarrito.style.display = totalItems > 0 ? 'flex' : 'none';
@@ -139,7 +148,6 @@ function addToCart(id) {
     }
     saveCart();
     
-    // Animación de "añadido al carrito"
     const cartButton = document.getElementById('btn-carrito');
     cartButton.classList.add('producto-agregado');
     setTimeout(() => cartButton.classList.remove('producto-agregado'), 600);
@@ -252,6 +260,12 @@ function checkout() {
 
 // Renderizar productos dinámicamente
 function renderProducts() {
+    if (!productosGrid) {
+        console.error("El contenedor de productos no se encontró. Asegúrate de que el HTML esté cargado antes.");
+        return;
+    }
+
+    productosGrid.innerHTML = '';
     products.forEach(product => {
         const productEl = document.createElement('div');
         productEl.className = 'producto fade-in';
@@ -307,7 +321,6 @@ const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const img = entry.target;
-            // img.src = img.dataset.src; // Esto sería necesario si no usáramos "loading='lazy'"
             img.classList.add('loaded');
             observer.unobserve(img);
         }
@@ -335,47 +348,13 @@ document.addEventListener('click', (event) => {
         const id = botonAgregar.dataset.id;
         addToCart(id);
     }
+});
 
 // Inicialización de funciones
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartDisplay();
     
-    // Iniciar el observador para las animaciones
     fadeInElements.forEach(el => fadeObserver.observe(el));
-    
-    // Iniciar el observador para lazy loading
-    lazyImages.forEach(img => lazyLoadObserver.observe(img));
-});
-// =================================================================
-// Eventos y Inicialización
-// =================================================================
-
-// ... (El resto de tus Event Listeners) ...
-
-// Evento para añadir productos al carrito (delegado)
-document.addEventListener('click', (event) => {
-    const botonAgregar = event.target.closest('.agregar-carrito');
-    if (botonAgregar) {
-        const id = botonAgregar.dataset.id;
-        addToCart(id);
-    }
-});
-
-// Inicialización de funciones
-document.addEventListener('DOMContentLoaded', () => {
-    // La variable productosGrid debe inicializarse aquí, dentro de DOMContentLoaded
-    const productosGrid = document.querySelector('.productos-grid');
-    if (productosGrid) {
-        renderProducts();
-    }
-    updateCartDisplay();
-    
-    // Iniciar el observador para las animaciones
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    fadeInElements.forEach(el => fadeObserver.observe(el));
-    
-    // Iniciar el observador para lazy loading
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     lazyImages.forEach(img => lazyLoadObserver.observe(img));
 });
