@@ -337,6 +337,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+finalizarPedidoBtn.addEventListener('click', checkout);
 // Inicialización de funciones
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
