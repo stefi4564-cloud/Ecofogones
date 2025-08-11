@@ -3,302 +3,173 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <title>Ecofogones - Fogones Eficientes | Soluciones Sostenibles</title>
     <meta name="description" content="Fabricamos fogones eficientes que ahorran hasta 50% de leña. Soluciones sostenibles para tu cocina.">
-    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <header id="header">
+        <a href="#" class="logo">ECOFOGONES</a>
+        <nav class="navbar">
+            <a href="#hero">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="header-actions">
+            <button id="btn-carrito">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="contador-carrito">0</span>
+            </button>
+            <button class="menu-toggler">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
 
-  <header id="header">
-    <nav>
-      <div class="logo">🌱 Ecofogones</div>
-      <ul>
-        <li><a href="#home">Inicio</a></li>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li>
-          <button id="btn-carrito" aria-label="Abrir carrito">
-            <i class="fas fa-shopping-cart"></i>
-            <span id="contador-carrito" class="carrito-contador">0</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">Cocina con Energía Limpia</h1>
+                <p class="hero-subtitle fade-in">Fogones ecológicos que ahorran hasta un 50% de leña. ¡Una solución sostenible para tu hogar!</p>
+                <div class="hero-buttons fade-in">
+                    <a href="#productos" class="btn btn-primary">Ver Productos</a>
+                    <a href="#contacto" class="btn btn-secondary">Más Información</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="https://images.unsplash.com/photo-1627916694605-0f62c0199573?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fogón Ecológico Moderno">
+            </div>
+        </section>
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Fogones Eficientes</h1>
-      <p class="subtitle">Soluciones sostenibles para tu cocina</p>
-      <p class="description">Reduce hasta un 50% el consumo de leña con nuestros fogones ecológicos. Diseñados para mejorar tu calidad de vida mientras cuidas el medio ambiente.</p>
-      <div class="hero-buttons">
-        <a href="#productos" class="btn btn-primary">
-          <i class="fas fa-fire"></i> Ver Productos
-        </a>
-        <a href="#contacto" class="btn btn-secondary">
-          <i class="fas fa-phone"></i> Contactar
-        </a>
-      </div>
-    </div>
-  </section>
+        <section id="stats" class="stats">
+            <div class="stat-item fade-in">
+                <i class="fas fa-seedling"></i>
+                <div class="stat-number">+1000</div>
+                <div class="stat-text">Familias beneficiadas</div>
+            </div>
+            <div class="stat-item fade-in">
+                <i class="fas fa-fire-extinguisher"></i>
+                <div class="stat-number">-50%</div>
+                <div class="stat-text">Ahorro en leña</div>
+            </div>
+            <div class="stat-item fade-in">
+                <i class="fas fa-tree"></i>
+                <div class="stat-number">+15K</div>
+                <div class="stat-text">Árboles salvados</div>
+            </div>
+        </section>
 
-  <section class="stats">
-    <div class="stats-container">
-      <div class="stat-card fade-in">
-        <div class="stat-icon"><i class="fas fa-leaf"></i></div>
-        <div class="stat-number">50%</div>
-        <div class="stat-label">Ahorro de Leña</div>
-      </div>
-      <div class="stat-card fade-in">
-        <div class="stat-icon"><i class="fas fa-home"></i></div>
-        <div class="stat-number">1000+</div>
-        <div class="stat-label">Familias Beneficiadas</div>
-      </div>
-      <div class="stat-card fade-in">
-        <div class="stat-icon"><i class="fas fa-award"></i></div>
-        <div class="stat-number">5</div>
-        <div class="stat-label">Años de Experiencia</div>
-      </div>
-      <div class="stat-card fade-in">
-        <div class="stat-icon"><i class="fas fa-shipping-fast"></i></div>
-        <div class="stat-number">24h</div>
-        <div class="stat-label">Entrega Rápida</div>
-      </div>
-    </div>
-  </section>
+        <section id="productos" class="productos">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Nuestros Productos</h2>
+                <p class="section-subtitle">Descubre nuestra línea completa de fogones ecológicos.</p>
+            </div>
+            
+            <div class="productos-grid">
+                </div>
+        </section>
 
-  <section id="productos" class="productos">
-    <div class="section-header fade-in">
-      <h2 class="section-title">Nuestros Productos</h2>
-      <p class="section-subtitle">Descubre nuestra línea completa de fogones ecológicos.</p>
+        <section id="about" class="about">
+            <div class="about-image fade-in">
+                <img src="https://images.unsplash.com/photo-1610486414995-1563e46c77f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fogón de leña funcionando">
+            </div>
+            <div class="about-content fade-in">
+                <h2 class="section-title">Nuestra Misión</h2>
+                <p>En Ecofogones, creemos en el poder de la innovación para crear un impacto positivo en el medio ambiente y en la calidad de vida de las comunidades. Nuestros fogones no solo son una solución eficiente para cocinar, sino también un paso hacia un futuro más sostenible.</p>
+                <a href="#contacto" class="btn btn-primary">Conoce más</a>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle">Testimonios de quienes ya disfrutan de un fogón ecoficiente.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-in">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de cliente" class="review-photo">
+                    <p class="review-text">"El mejor fogón que he tenido. Ahorro una cantidad increíble de leña y la comida queda deliciosa. ¡Lo recomiendo al 100%!"</p>
+                    <div class="review-author">- Carlos R.</div>
+                </div>
+                <div class="review-card fade-in">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto de cliente" class="review-photo">
+                    <p class="review-text">"Funciona de maravilla. Es robusto, fácil de usar y se nota la calidad de los materiales. La atención al cliente fue excelente."</p>
+                    <div class="review-author">- Marcela G.</div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <div id="carrito-overlay" class="carrito-overlay"></div>
+    <div id="carrito" class="carrito">
+        <button id="cerrar-carrito" class="cerrar-carrito">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3>Carrito de Compras</h3>
+        <div id="lista-carrito">
+            </div>
+        <p id="carrito-vacio">El carrito está vacío.</p>
+        <div class="resumen-pedido">
+            <div class="resumen-linea">
+                <span>Subtotal:</span>
+                <span id="subtotal-carrito">$0</span>
+            </div>
+            <div class="resumen-linea descuento-linea">
+                <span>Descuento (<span id="descuento-porcentaje">0%</span>):</span>
+                <span id="descuento-valor">-$0</span>
+            </div>
+            <div class="cupon-container">
+                <label for="cupon-input" class="label-cupon">¿Tienes un cupón?</label>
+                <div class="cupon-input-container">
+                    <input type="text" id="cupon-input" placeholder="Ingresa tu cupón" />
+                    <button id="aplicar-cupon-btn" class="btn-cupon">Aplicar</button>
+                </div>
+            </div>
+            <div class="resumen-linea total-linea">
+                <span>Total:</span>
+                <span id="total-carrito">$0</span>
+            </div>
+        </div>
+        <div class="carrito-acciones">
+            <button id="vaciar-carrito" class="btn-vaciar">Vaciar Carrito</button>
+            <button id="finalizar-pedido" class="btn-finalizar-compra">Finalizar Pedido</button>
+        </div>
     </div>
     
-    <div class="productos-grid">
-      </div>
-  </section>
+    <a href="https://wa.me/573148673011" class="whatsapp-flotante" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-  <section id="reseñas" class="reseñas">
-    <div class="section-header fade-in">
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <p class="section-subtitle">Testimonios de familias que ya están disfrutando de Ecofogones.</p>
-    </div>
-    <div class="reseñas-grid">
-      <div class="reseña fade-in">
-        <img src="https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Foto de cliente" class="reseña-foto">
-        <div class="reseña-texto">
-          <p>"¡Fantástico! El ahorro de leña es impresionante y la comida queda deliciosa. La entrega fue muy rápida."</p>
-          <div class="reseña-autor">
-            <h4>Ana G.</h4>
-            <div class="reseña-estrellas">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ecofogones</h3>
+                <p>Soluciones sostenibles para tu cocina.</p>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="reseña fade-in">
-        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Foto de cliente" class="reseña-foto">
-        <div class="reseña-texto">
-          <p>"Un producto de alta calidad que realmente cumple lo que promete. Ahora cocinar es más rápido y económico."</p>
-          <div class="reseña-autor">
-            <h4>Carlos P.</h4>
-            <div class="reseña-estrellas">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="reseña fade-in">
-        <img src="https://images.unsplash.com/photo-1531427134440-fa653770335e?ixlib=rb-4.0.3&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Foto de cliente" class="reseña-foto">
-        <div class="reseña-texto">
-          <p>"La atención al cliente es excelente. Me ayudaron a elegir el fogón perfecto para mi familia. ¡Muy recomendado!"</p>
-          <div class="reseña-autor">
-            <h4>Sofía L.</h4>
-            <div class="reseña-estrellas">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> contacto@ecofogones.com</p>
+                <p><i class="fab fa-whatsapp"></i> +57 314 867 3011</p>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="sobre-nosotros" class="sobre-nosotros">
-    <div class="sobre-content">
-      <div class="sobre-text fade-in">
-        <h2>Sobre Nosotros</h2>
-        <p>En Ecofogones nos dedicamos a la fabricación y distribución de fogones eficientes que contribuyen al ahorro de leña y a la protección del medio ambiente.</p>
-        <p>Nuestros productos están diseñados con tecnología innovadora que reduce hasta un 50% el consumo de combustible, mejorando la calidad de vida de las familias colombianas mientras cuidas nuestro planeta.</p>
-        
-        <div class="sobre-features">
-          <div class="feature">
-            <div class="feature-icon"><i class="fas fa-seedling"></i></div>
-            <div>
-              <h4>100% Ecológico</h4>
-              <p>Tecnología limpia y sostenible</p>
-            </div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon"><i class="fas fa-tools"></i></div>
-            <div>
-              <h4>Fabricación Artesanal</h4>
-              <p>Calidad y atención al detalle</p>
-            </div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <div>
-              <h4>Garantía Extendida</h4>
-              <p>Respaldamos nuestros productos</p>
-            </div>
-          </div>
+        <div class="footer-bottom">
+            &copy; 2024 Ecofogones. Todos los derechos reservados.
         </div>
-      </div>
-      
-      <div class="sobre-imagen fade-in">
-        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taller Ecofogones" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <section id="contacto" class="contacto">
-    <div class="contacto-container">
-      <div class="contacto-info fade-in">
-        <h2>Contáctanos</h2>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon"><i class="fas fa-phone"></i></div>
-          <div class="contacto-text">+57 314 867 3011</div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contacto-text">contacto@ecofogones.com</div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon"><i class="fas fa-clock"></i></div>
-          <div class="contacto-text">Lunes a Viernes<br>8:00 AM - 6:00 PM</div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="contacto-text">Colombia<br>Envíos a todo el país</div>
-        </div>
-      </div>
-      
-      <div class="contacto-mapa fade-in">
-        <h3 style="color: var(--text-primary); margin-bottom: 2rem; font-size: 1.5rem;">¿Tienes preguntas?</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Estamos aquí para ayudarte a encontrar el fogón perfecto para tus necesidades.</p>
-        <a href="https://wa.me/573148673011?text=¡Hola!Tengopreguntassobrelosfogonesecológicos." 
-           class="btn btn-primary" 
-           target="_blank" 
-           style="display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>🌱 Ecofogones</h3>
-        <p>Transformando la manera de cocinar en Colombia con soluciones sostenibles e innovadoras.</p>
-        <div style="margin-top: 1.5rem;">
-          <a href="#" style="margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-          <a href="#" style="margin-right: 1rem; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/573148673011" style="font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Productos</h3>
-        <a href="#productos">Fogón Tradicional</a>
-        <a href="#productos">Fogón Familiar</a>
-        <a href="#productos">Fogón Industrial</a>
-        <a href="#productos">Accesorios</a>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Empresa</h3>
-        <a href="#sobre-nosotros">Sobre Nosotros</a>
-        <a href="#mision-vision">Misión y Visión</a>
-        <a href="#contacto">Contacto</a>
-        <a href="#">Garantías</a>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Soporte</h3>
-        <a href="https://wa.me/573148673011">WhatsApp</a>
-        <a href="mailto:contacto@ecofogones.com">Email</a>
-        <a href="#">Manual de Usuario</a>
-        <a href="#">Mantenimiento</a>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Ecofogones. Todos los derechos reservados. | Diseñado con 🌱 para un futuro sostenible</p>
-    </div>
-  </footer>
-
-  <a href="https://wa.me/573148673011?text=¡Hola!Estoy interesado en sus fogones ecológicos." 
-     class="whatsapp" 
-     target="_blank" 
-     aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <div id="carrito-overlay" class="carrito-overlay"></div>
-
-  <aside id="carrito" aria-label="Carrito de compras">
-    <div class="carrito-header">
-      <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
-      <button id="cerrar-carrito" aria-label="Cerrar carrito">&times;</button>
-    </div>
-    
-    <div class="carrito-contenido">
-      <div id="carrito-vacio" class="carrito-vacio">
-        <i class="fas fa-shopping-cart"></i>
-        <h3>Tu carrito está vacío</h3>
-        <p>Explora nuestros productos y encuentra el fogón perfecto para ti</p>
-      </div>
-      <div id="lista-carrito"></div>
-    </div>
-    
-    <div class="carrito-footer">
-      <div class="carrito-resumen">
-        <div class="resumen-linea">
-          <span>Subtotal:</span>
-          <span id="subtotal-carrito">$0</span>
-        </div>
-        <div class="resumen-linea">
-          <span>Descuento (<span id="descuento-porcentaje">0%</span>):</span>
-          <span id="descuento-valor">$0</span>
-        </div>
-        <div class="resumen-linea">
-          <span>Total:</span>
-          <span id="total-carrito">$0</span>
-        </div>
-      </div>
-      
-      <div class="cupon-container">
-  <label for="cupon-input" class="label-cupon">¿Tienes un cupón?</label>
-  <div class="cupon-input-container">
-    <input type="text" id="cupon-input" placeholder="Ingresa tu cupón" />
-    <button id="aplicar-cupon-btn" class="btn-cupon">Aplicar</button>
-  </div>
-</div>
-
-<button id="finalizar-pedido" class="btn-finalizar-compra">
-  Finalizar Pedido
-</button>
-      </div>
-    </div>
-  </aside>
-
-  <script src="script.js"></script>
+    </footer>
 </body>
 </html>
