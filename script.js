@@ -330,8 +330,9 @@ aplicarCuponBtn.addEventListener('click', () => {
 
 // Evento para añadir productos al carrito (delegado)
 document.addEventListener('click', (event) => {
-    if (event.target.matches('.agregar-carrito')) {
-        const id = event.target.dataset.id;
+    const botonAgregar = event.target.closest('.agregar-carrito');
+    if (botonAgregar) {
+        const id = botonAgregar.dataset.id;
         addToCart(id);
     }
 });
