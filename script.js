@@ -348,3 +348,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Iniciar el observador para lazy loading
     lazyImages.forEach(img => lazyLoadObserver.observe(img));
 });
+// =================================================================
+// Eventos y Inicialización
+// =================================================================
+
+// ... (El resto de tus Event Listeners) ...
+
+// Evento para añadir productos al carrito (delegado)
+document.addEventListener('click', (event) => {
+    const botonAgregar = event.target.closest('.agregar-carrito');
+    if (botonAgregar) {
+        const id = botonAgregar.dataset.id;
+        addToCart(id);
+    }
+});
+
+// Inicialización de funciones
+document.addEventListener('DOMContentLoaded', () => {
+    // La variable productosGrid debe inicializarse aquí, dentro de DOMContentLoaded
+    const productosGrid = document.querySelector('.productos-grid');
+    if (productosGrid) {
+        renderProducts();
+    }
+    updateCartDisplay();
+    
+    // Iniciar el observador para las animaciones
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    fadeInElements.forEach(el => fadeObserver.observe(el));
+    
+    // Iniciar el observador para lazy loading
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => lazyLoadObserver.observe(img));
+});
