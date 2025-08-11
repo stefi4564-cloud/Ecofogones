@@ -335,9 +335,7 @@ document.addEventListener('click', (event) => {
         const id = botonAgregar.dataset.id;
         addToCart(id);
     }
-});
 
-finalizarPedidoBtn.addEventListener('click', checkout);
 // Inicialización de funciones
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
