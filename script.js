@@ -15,17 +15,7 @@ const products = [
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
         originalPrice: 500000
     },
-    {
-        id: "eco-100",
-        name: "Fogón Tradicional",
-        price: 450000,
-        img: "fogontradicional1.png",
-        description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
-        badge: "Más Popular",
-        features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
-        originalPrice: 500000
-    },
-
+    
     {
         id: "eco-200",
         name: "Fogón de 2 boquillas",
