@@ -104,7 +104,7 @@ h3 { font-size: 1.5rem; }
     bottom: 2rem;
     right: 2rem;
     background-color: #25d366;
-    color: var(--white);
+    color: var(--orange);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -339,7 +339,7 @@ h3 { font-size: 1.5rem; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: 
 }
 
 .producto:hover .producto-imagen img {
@@ -420,7 +420,7 @@ h3 { font-size: 1.5rem; }
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color var(--transition-speed);
+    transition: background-color var(--orange);
     display: flex;
     align-items: center;
     justify-content: center;
