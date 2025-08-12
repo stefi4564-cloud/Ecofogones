@@ -243,7 +243,7 @@ function checkout() {
         return;
     }
 
-    let message = '¡Hola! Me interesa hacer el siguiente pedido de Ecofogones:%0A%0A';
+    let message = '¡Hola! Me interesa hacer el siguiente pedido de Ecofogones;
     let subtotal = 0;
 
     cart.forEach(item => {
@@ -251,21 +251,21 @@ function checkout() {
         if (product) {
             const subtotalItem = product.price * item.qty;
             subtotal += subtotalItem;
-            message += `• ${product.name}%0A`;
-            message += `  Cantidad: ${item.qty}%0A`;
+            message += `• ${product.name};
+            message += `  Cantidad: ${item.qty};
             message += `  Subtotal: ${formatCurrency(subtotalItem)}%0A%0A`;
         }
     });
 
     const finalTotal = subtotal - appliedDiscount;
-    message += `🛒 *Resumen del Pedido*%0A`;
-    message += `---------------------------%0A`;
-    message += `Subtotal: ${formatCurrency(subtotal)}%0A`;
+    message += `🛒 *Resumen del Pedido*%;
+    message += `---------------------------`;
+    message += `Subtotal: ${formatCurrency(subtotal)}%;
     if (isDiscountApplied) {
-        message += `Descuento: -${formatCurrency(appliedDiscount)}%0A`;
+        message += `Descuento: -${formatCurrency(appliedDiscount)};
     }
     message += `*TOTAL: ${formatCurrency(finalTotal < 0 ? 0 : finalTotal)}*%0A%0A`;
-    message += '¿Podrían confirmarme la disponibilidad y los tiempos de entrega?%0A%0A¡Gracias!';
+    message += '¿Podrían confirmarme la disponibilidad y los tiempos de entrega?¡Gracias!';
 
     const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
     window.open(urlWhatsApp, '_blank');
@@ -280,11 +280,11 @@ function sendContactForm(event) {
     const subject = document.getElementById('asunto').value;
     const message = document.getElementById('mensaje').value;
 
-    const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:%0A%0A`
-                             + `*Nombre:* ${name}%0A`
-                             + `*Correo:* ${email}%0A`
-                             + `*Asunto:* ${subject}%0A%0A`
-                             + `*Mensaje:* ${message}`;
+    const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:`
+                             + `*Nombre:* ${name}`
+                             + `*Correo:* ${email}`
+                             + `*Asunto:* ${subject}`
+                             + `*Mensaje:* ${message}`
 
     const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(urlWhatsApp, '_blank');
@@ -297,12 +297,6 @@ function sendContactForm(event) {
 // Lógica para la UI y la página
 // =================================================================
 
-// Renderizar productos dinámicamente
-function renderProducts() {
-    if (!productosGrid) {
-        console.error("El contenedor de productos no se encontró. Asegúrate de que el HTML esté cargado antes.");
-        return;
-    }
 
     productosGrid.innerHTML = '';
     products.forEach(product => {
