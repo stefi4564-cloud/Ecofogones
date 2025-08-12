@@ -297,6 +297,12 @@ function sendContactForm(event) {
 // Lógica para la UI y la página
 // =================================================================
 
+// Renderizar productos dinámicamente
+function renderProducts() {
+    if (!productosGrid) {
+        console.error("El contenedor de productos no se encontró. Asegúrate de que el HTML esté cargado antes.");
+        return;
+    }
 
     productosGrid.innerHTML = '';
     products.forEach(product => {
