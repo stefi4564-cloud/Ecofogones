@@ -104,7 +104,7 @@ h3 { font-size: 1.5rem; }
     bottom: 2rem;
     right: 2rem;
     background-color: #25d366;
-    color: var(--black);
+    color: var(--white);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -177,12 +177,12 @@ h3 { font-size: 1.5rem; }
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--green);
+    color: var(--primary-color);
     position: relative;
 }
 
 #btn-carrito:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 #contador-carrito {
@@ -190,7 +190,7 @@ h3 { font-size: 1.5rem; }
     top: -5px;
     right: -5px;
     background-color: var(--accent-color);
-    color: var(--black);
+    color: var(--white);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -199,6 +199,7 @@ h3 { font-size: 1.5rem; }
     align-items: center;
     font-size: 0.8rem;
     font-weight: 700;
+    display: none;
 }
 
 .producto-agregado {
@@ -452,6 +453,66 @@ h3 { font-size: 1.5rem; }
 
 .about-content {
     max-width: 600px;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 8rem 2rem;
+    background-color: #f1f5f9;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question h3 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.faq-question i {
+    font-size: 1.25rem;
+    color: #555;
+    transition: transform var(--transition-speed);
+}
+
+.faq-answer {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    padding-top: 0;
+    font-size: 1rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+    visibility: visible;
+    padding-top: 1rem;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
 }
 
 /* Reviews Section */
