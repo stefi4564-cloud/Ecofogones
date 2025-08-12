@@ -15,7 +15,6 @@ const products = [
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
         originalPrice: 500000
     },
-    
     {
         id: "eco-200",
         name: "Fogón de 2 boquillas",
@@ -36,14 +35,14 @@ const products = [
         features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
         originalPrice: 1400000
     },
-     {
+    {
         id: "eco-400",
         name: "Plato para arado",
         price: 120000,
         img: "platoaradofogon.png",
-        description: "Para uso en restaurantes y cocinas. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
-        badge: "Premium",
-        features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
+        description: "Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.",
+        badge: "Nuevo",
+        features: ["Acero al Carbono", "Versátil", "Fácil de Limpiar"],
         originalPrice: 140000
     }
 ];
@@ -85,6 +84,7 @@ const cuponInput = document.getElementById('cupon-input');
 const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
 const productosGrid = document.querySelector('.productos-grid');
 const contactForm = document.getElementById('contact-form');
+const faqItems = document.querySelectorAll('.faq-item');
 
 
 if (isDiscountAppliedFlag && appliedDiscountCode) {
@@ -281,10 +281,10 @@ function sendContactForm(event) {
     const message = document.getElementById('mensaje').value;
 
     const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:%0A%0A`
-                          + `*Nombre:* ${name}%0A`
-                          + `*Correo:* ${email}%0A`
-                          + `*Asunto:* ${subject}%0A%0A`
-                          + `*Mensaje:* ${message}`;
+                             + `*Nombre:* ${name}%0A`
+                             + `*Correo:* ${email}%0A`
+                             + `*Asunto:* ${subject}%0A%0A`
+                             + `*Mensaje:* ${message}`;
 
     const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(urlWhatsApp, '_blank');
@@ -392,6 +392,14 @@ document.addEventListener('click', (event) => {
         const id = botonAgregar.dataset.id;
         addToCart(id);
     }
+});
+
+// Lógica para el acordeón de las Preguntas Frecuentes
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        item.classList.toggle('active');
+    });
 });
 
 // Inicialización de funciones
