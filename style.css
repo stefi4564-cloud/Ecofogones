@@ -37,6 +37,14 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-light);
+    /* Ajuste para el carrito siempre visible */
+    padding-right: 400px; /* Ancho del carrito */
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-right: 0; /* Sin padding en móviles */
+    }
 }
 
 img {
@@ -111,7 +119,7 @@ h3 { font-size: 1.5rem; }
 .whatsapp-flotante {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    right: 420px; /* Ajuste para el carrito siempre visible */
     background-color: #25d366;
     color: var(--light-text-color);
     width: 60px;
@@ -129,6 +137,12 @@ h3 { font-size: 1.5rem; }
 .whatsapp-flotante:hover {
     transform: scale(1.1);
     background-color: #128c7e;
+}
+
+@media (max-width: 992px) {
+    .whatsapp-flotante {
+        right: 2rem;
+    }
 }
 
 /* Header */
@@ -153,10 +167,16 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
 }
 
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .navbar a {
-    margin: 0 1rem;
     font-weight: 500;
     position: relative;
+    color: var(--text-color);
 }
 
 .navbar a::after {
@@ -188,7 +208,7 @@ h3 { font-size: 1.5rem; }
     cursor: pointer;
     color: var(--primary-color);
     position: relative;
-    /* Ocultar el botón si el carrito está siempre visible */
+    /* Ocultar el botón ya que el carrito está siempre visible */
     display: none;
 }
 
@@ -336,6 +356,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .producto:hover {
+    /* Animación de elevación eliminada */
     box-shadow: 0 5px 20px var(--shadow-light);
 }
 
@@ -663,7 +684,7 @@ h3 { font-size: 1.5rem; }
     width: 400px;
     max-width: 90vw;
     height: 100vh;
-    background-color: var(--card-bg);
+    background-color: #000; /* Fondo negro */
     padding: 2rem;
     box-shadow: -5px 0 15px var(--shadow-medium);
     transform: translateX(0); /* Ahora está siempre visible */
@@ -671,6 +692,7 @@ h3 { font-size: 1.5rem; }
     z-index: 11;
     display: flex;
     flex-direction: column;
+    color: var(--light-text-color); /* Texto en color blanco */
 }
 
 .carrito-header {
@@ -679,22 +701,24 @@ h3 { font-size: 1.5rem; }
     align-items: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #333;
 }
 
 .carrito-header h3 {
-    color: var(--primary-color);
+    color: var(--light-text-color); /* Título del carrito en blanco */
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
-.cerrar-carrito {
+#cerrar-carrito {
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-color);
+    color: var(--light-text-color); /* Icono de cerrar en blanco */
+    /* Ocultar el botón si el carrito está siempre visible */
+    display: none;
 }
 
 #lista-carrito {
@@ -709,7 +733,7 @@ h3 { font-size: 1.5rem; }
     gap: 1rem;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #333;
 }
 
 .carrito-item img {
@@ -721,6 +745,7 @@ h3 { font-size: 1.5rem; }
 
 .carrito-item-info {
     flex-grow: 1;
+    color: var(--light-text-color); /* Info del item en blanco */
 }
 
 .carrito-item-nombre {
@@ -728,7 +753,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .carrito-item-precio {
-    color: var(--primary-color);
+    color: var(--light-text-color); /* Precio en blanco */
     font-weight: 500;
 }
 
@@ -737,12 +762,13 @@ h3 { font-size: 1.5rem; }
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    color: var(--light-text-color);
 }
 
 .cantidad-btn {
     background: none;
     border: 1px solid #ccc;
-    color: #555;
+    color: var(--light-text-color); /* Botones en blanco */
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -764,14 +790,15 @@ h3 { font-size: 1.5rem; }
 
 #carrito-vacio {
     text-align: center;
-    color: #777;
+    color: var(--light-text-color); /* Texto en blanco */
     margin-top: 2rem;
     display: none;
 }
 
 .resumen-pedido {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #333;
     padding-top: 1.5rem;
+    color: var(--light-text-color); /* Resumen en blanco */
 }
 
 .resumen-linea {
@@ -784,7 +811,7 @@ h3 { font-size: 1.5rem; }
 .resumen-linea.total-linea {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Total en color verde */
     margin-top: 1rem;
 }
 
@@ -814,6 +841,9 @@ h3 { font-size: 1.5rem; }
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
+    background-color: var(--light-text-color); /* Input de cupón en blanco */
+    font-family: var(--font-family);
+    color: var(--text-color);
 }
 
 .btn-cupon {
