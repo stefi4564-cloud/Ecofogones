@@ -314,7 +314,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .producto {
-    background: var(--white);
+    background: var(--black);
     border-radius: 24px;
     overflow: cover;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
@@ -351,7 +351,7 @@ h3 { font-size: 1.5rem; }
     top: 1rem;
     left: 1rem;
     background-color: var(--accent-color);
-    color: var(--white);
+    color: var(--black);
     padding: 0.4rem 1rem;
     border-radius: 999px;
     font-size: 0.8rem;
@@ -372,7 +372,7 @@ h3 { font-size: 1.5rem; }
 
 .producto-descripcion {
     font-size: 0.9rem;
-    color: #666;
+    color: black;
     margin-bottom: 1rem;
     flex-grow: 1;
 }
@@ -413,7 +413,7 @@ h3 { font-size: 1.5rem; }
 
 .agregar-carrito {
     background-color: var(--primary-color);
-    color: var(--light-text-color);
+    color: var(--black);
     border: none;
     padding: 1rem;
     border-radius: 999px;
