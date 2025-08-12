@@ -1,18 +1,27 @@
 :root {
+    /* Paleta de colores */
     --primary-color: #2e7d32;
     --secondary-color: #4caf50;
     --accent-color: #ff9800;
     --text-color: #333;
     --light-text-color: #fff;
-    --white: #fff;
     --bg-light: #f8fafc;
     --card-bg: #fff;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Sombras y bordes */
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
     --border-radius: 12px;
+
+    /* Tipografía */
     --font-family: 'Inter', sans-serif;
+
+    /* Transiciones */
     --transition-speed: 0.3s;
 }
 
+/* Estilos de reinicio y generales */
 * {
     margin: 0;
     padding: 0;
@@ -44,7 +53,7 @@ ul {
     list-style: none;
 }
 
-/* Typography */
+/* Tipografía */
 h1, h2, h3 {
     font-weight: 700;
     line-height: 1.2;
@@ -59,7 +68,7 @@ h3 { font-size: 1.5rem; }
     h2 { font-size: 2rem; }
 }
 
-/* Reusable Components */
+/* Componentes reutilizables */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -104,7 +113,7 @@ h3 { font-size: 1.5rem; }
     bottom: 2rem;
     right: 2rem;
     background-color: #25d366;
-    color: var(--white);
+    color: var(--light-text-color);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -112,7 +121,7 @@ h3 { font-size: 1.5rem; }
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px var(--shadow-strong);
     z-index: 1000;
     transition: transform 0.2s ease-out, background-color var(--transition-speed);
 }
@@ -134,7 +143,7 @@ h3 { font-size: 1.5rem; }
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px var(--shadow-light);
     transition: background-color var(--transition-speed);
 }
 
@@ -179,6 +188,8 @@ h3 { font-size: 1.5rem; }
     cursor: pointer;
     color: var(--primary-color);
     position: relative;
+    /* Ocultar el botón si el carrito está siempre visible */
+    display: none;
 }
 
 #btn-carrito:hover {
@@ -190,7 +201,7 @@ h3 { font-size: 1.5rem; }
     top: -5px;
     right: -5px;
     background-color: var(--accent-color);
-    color: var(--white);
+    color: var(--light-text-color);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -215,7 +226,7 @@ h3 { font-size: 1.5rem; }
     display: none;
 }
 
-/* Hero Section */
+/* Sección Hero */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -249,7 +260,7 @@ h3 { font-size: 1.5rem; }
 
 .hero-image img {
     border-radius: 24px;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: 0 10px 30px var(--shadow-medium);
 }
 
 .hero-buttons {
@@ -257,7 +268,7 @@ h3 { font-size: 1.5rem; }
     gap: 1rem;
 }
 
-/* Stats Section */
+/* Sección de Estadísticas */
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -282,7 +293,7 @@ h3 { font-size: 1.5rem; }
     font-size: 1rem;
 }
 
-/* Products Section */
+/* Sección de Productos */
 .productos {
     padding: 8rem 2rem;
     background: var(--bg-light);
@@ -317,16 +328,15 @@ h3 { font-size: 1.5rem; }
     background: var(--card-bg);
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 20px var(--shadow-light);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--shadow-light);
     position: relative;
     will-change: transform;
 }
 
 .producto:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px var(--shadow-light);
 }
 
 .producto-imagen {
@@ -343,7 +353,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .producto:hover .producto-imagen img {
-    transform: scale(1.05);
+    /* Animación de zoom eliminada */
 }
 
 .producto-badge {
@@ -432,14 +442,14 @@ h3 { font-size: 1.5rem; }
     background-color: var(--secondary-color);
 }
 
-/* About Section */
+/* Sección Acerca de */
 .about {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4rem;
     padding: 8rem 2rem;
-    background-color: var(--white);
+    background-color: var(--card-bg);
 }
 
 .about-image {
@@ -448,14 +458,14 @@ h3 { font-size: 1.5rem; }
 
 .about-image img {
     border-radius: 24px;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: 0 10px 30px var(--shadow-medium);
 }
 
 .about-content {
     max-width: 600px;
 }
 
-/* FAQ Section */
+/* Sección de Preguntas Frecuentes */
 .faq {
     padding: 8rem 2rem;
     background-color: #f1f5f9;
@@ -467,10 +477,10 @@ h3 { font-size: 1.5rem; }
 }
 
 .faq-item {
-    background-color: var(--white);
+    background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px var(--shadow-light);
     margin-bottom: 1rem;
     overflow: hidden;
 }
@@ -515,7 +525,7 @@ h3 { font-size: 1.5rem; }
     transform: rotate(180deg);
 }
 
-/* Reviews Section */
+/* Sección de Reseñas */
 .reviews {
     padding: 8rem 2rem;
     background-color: var(--bg-light);
@@ -531,10 +541,10 @@ h3 { font-size: 1.5rem; }
 }
 
 .review-card {
-    background-color: var(--white);
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 24px;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    box-shadow: 0 5px 20px var(--shadow-medium);
     position: relative;
     text-align: left;
 }
@@ -557,10 +567,10 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
 }
 
-/* Contact Section */
+/* Sección de Contacto */
 .contacto {
     padding: 8rem 2rem;
-    background-color: var(--white);
+    background-color: var(--card-bg);
 }
 
 .contacto-container {
@@ -601,7 +611,7 @@ h3 { font-size: 1.5rem; }
     background: var(--bg-light);
     padding: 2rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 20px var(--shadow-color);
+    box-shadow: 0 5px 20px var(--shadow-medium);
 }
 
 .contacto-form .form-group {
@@ -640,23 +650,10 @@ h3 { font-size: 1.5rem; }
 }
 
 
-/* Shopping Cart Modal */
+/* Modal del Carrito de Compras (Ahora siempre visible) */
 .carrito-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity var(--transition-speed) ease-in-out, visibility var(--transition-speed) ease-in-out;
-}
-
-.carrito-overlay.active {
-    visibility: visible;
-    opacity: 1;
+    /* El overlay se elimina ya que el carrito estará siempre visible */
+    display: none;
 }
 
 .carrito {
@@ -666,18 +663,14 @@ h3 { font-size: 1.5rem; }
     width: 400px;
     max-width: 90vw;
     height: 100vh;
-    background-color: var(--white);
+    background-color: var(--card-bg);
     padding: 2rem;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform var(--transition-speed) ease-in-out;
+    box-shadow: -5px 0 15px var(--shadow-medium);
+    transform: translateX(0); /* Ahora está siempre visible */
+    transition: none; /* Se elimina la transición */
     z-index: 11;
     display: flex;
     flex-direction: column;
-}
-
-.carrito-visible {
-    transform: translateX(0);
 }
 
 .carrito-header {
@@ -826,7 +819,7 @@ h3 { font-size: 1.5rem; }
 .btn-cupon {
     padding: 0.75rem 1.5rem;
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--light-text-color);
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -842,7 +835,7 @@ h3 { font-size: 1.5rem; }
 
 .btn-vaciar {
     background-color: #e74c3c;
-    color: var(--white);
+    color: var(--light-text-color);
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -857,7 +850,7 @@ h3 { font-size: 1.5rem; }
 
 .btn-finalizar-compra {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--light-text-color);
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -870,7 +863,7 @@ h3 { font-size: 1.5rem; }
     background-color: var(--secondary-color);
 }
 
-/* Footer */
+/* Pie de página */
 footer {
     background-color: #222;
     color: #ccc;
@@ -886,7 +879,7 @@ footer {
 }
 
 .footer-section h3 {
-    color: var(--white);
+    color: var(--light-text-color);
     margin-bottom: 1rem;
 }
 
@@ -907,7 +900,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animations */
+/* Animaciones */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -919,7 +912,7 @@ footer {
     transform: translateY(0);
 }
 
-/* Responsive Design */
+/* Diseño Responsivo */
 @media (max-width: 992px) {
     .hero {
         flex-direction: column;
