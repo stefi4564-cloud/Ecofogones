@@ -4,7 +4,7 @@
 // =================================================================
 
 // Productos: edítalos si quieres (precios en COP)
-const products = [
+const products =
     {
         id: "eco-100",
         name: "Fogón Tradicional",
