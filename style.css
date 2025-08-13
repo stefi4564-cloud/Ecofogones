@@ -312,7 +312,7 @@ h3 { font-size: 1.5rem; }
 /* Sección de Productos */
 .productos {
     padding: 8rem 2rem;
-    background: var(--primary-color);
+    background: var(--card-bg);
 }
 
 .section-header {
@@ -341,12 +341,12 @@ h3 { font-size: 1.5rem; }
 }
 
 .producto {
-    background: var(--secondary-color);
+    background: var(--card-bg);
     border-radius: var(--border-radius);
-    overflow: visible;
+    overflow: hidden;
     box-shadow: var(--shadow-light);
     transition: all var(--transition-speed);
-    border: 1px solid var(--shadow-light);
+    border: 1px solid #e0e0e0;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -359,7 +359,7 @@ h3 { font-size: 1.5rem; }
 
 .producto-imagen {
     height: 250px;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .producto-imagen img {
@@ -394,13 +394,13 @@ h3 { font-size: 1.5rem; }
 
 .producto-info h3 {
     margin-bottom: 0.5rem;
-    color: #2e7d32 !important; /* Fuerza el color del título */
+    color: var(--primary-color);
     font-size: 1.6rem;
 }
 
 .producto-descripcion {
     font-size: 0.9rem;
-    color: #666 !important; /* Fuerza el color de la descripción */
+    color: #666;
     margin-bottom: 1.5rem;
     flex-grow: 1;
 }
@@ -414,7 +414,7 @@ h3 { font-size: 1.5rem; }
 
 .caracteristica {
     background-color: var(--bg-light);
-    color: #333 !important; /* Fuerza el color de las características */
+    color: var(--text-color);
     padding: 0.4rem 1rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -431,18 +431,18 @@ h3 { font-size: 1.5rem; }
 .producto-precio {
     font-size: 2rem;
     font-weight: 700;
-    color: #2e7d32 !important; /* Fuerza el color del precio */
+    color: var(--primary-color);
 }
 
 .precio-original {
     font-size: 1rem;
-    color: #333 !important; /* Fuerza el color del precio original */
+    color: #333;
     text-decoration: line-through;
 }
 
 .agregar-carrito {
-    background-color: #4caf50 !important; /* Fuerza el color del botón */
-    color: #333 !important; /* Fuerza el color del texto del botón */
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -582,6 +582,13 @@ h3 { font-size: 1.5rem; }
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
     text-align: left;
+}
+
+.review-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
 }
 
 .review-text {
