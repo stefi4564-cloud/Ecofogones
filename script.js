@@ -90,7 +90,7 @@ const faqItems = document.querySelectorAll('.faq-item');
 if (isDiscountAppliedFlag && appliedDiscountCode) {
     appliedDiscount = appliedDiscountValue;
     isDiscountApplied = true;
-    cuponInput.value = appliedDiscountCode;
+    if (cuponInput) cuponInput.value = appliedDiscountCode;
 }
 
 
@@ -106,16 +106,17 @@ function saveCart() {
 }
 
 function updateCartDisplay() {
+    if (!listaCarrito) return;
     listaCarrito.innerHTML = '';
     let subtotal = 0;
     let totalItems = 0;
 
     if (cart.length === 0) {
-        carritoVacio.style.display = 'block';
+        if (carritoVacio) carritoVacio.style.display = 'block';
         if (vaciarCarritoBtn) vaciarCarritoBtn.style.display = 'none';
         if (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'none';
     } else {
-        carritoVacio.style.display = 'none';
+        if (carritoVacio) carritoVacio.style.display = 'none';
         if (vaciarCarritoBtn) vaciarCarritoBtn.style.display = 'block';
         if (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'block';
 
@@ -149,12 +150,14 @@ function updateCartDisplay() {
     }
 
     const finalTotal = subtotal - appliedDiscount;
-    subtotalCarritoEl.textContent = formatCurrency(subtotal);
-    descuentoValorEl.textContent = formatCurrency(appliedDiscount);
-    descuentoPorcentajeEl.textContent = subtotal > 0 ? `${(appliedDiscount / subtotal * 100).toFixed(0)}%` : '0%';
-    totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
-    contadorCarrito.textContent = totalItems;
-    contadorCarrito.style.display = totalItems > 0 ? 'flex' : 'none';
+    if (subtotalCarritoEl) subtotalCarritoEl.textContent = formatCurrency(subtotal);
+    if (descuentoValorEl) descuentoValorEl.textContent = formatCurrency(appliedDiscount);
+    if (descuentoPorcentajeEl) descuentoPorcentajeEl.textContent = subtotal > 0 ? `${(appliedDiscount / subtotal * 100).toFixed(0)}%` : '0%';
+    if (totalCarritoEl) totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
+    if (contadorCarrito) {
+        contadorCarrito.textContent = totalItems;
+        contadorCarrito.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
 }
 
 function addToCart(id) {
@@ -169,10 +172,11 @@ function addToCart(id) {
     }
     saveCart();
     
-    // Animación de rebote del carrito
     const cartButton = document.getElementById('btn-carrito');
-    cartButton.classList.add('producto-agregado');
-    setTimeout(() => cartButton.classList.remove('producto-agregado'), 600);
+    if (cartButton) {
+        cartButton.classList.add('producto-agregado');
+        setTimeout(() => cartButton.classList.remove('producto-agregado'), 600);
+    }
 }
 
 function changeQuantity(id, change) {
@@ -192,14 +196,14 @@ function removeItem(id) {
 }
 
 function openCart() {
-    carritoElement.classList.add('carrito-visible');
-    carritoOverlay.classList.add('active');
+    if (carritoElement) carritoElement.classList.add('carrito-visible');
+    if (carritoOverlay) carritoOverlay.classList.add('active');
     document.body.classList.add('no-scroll');
 }
 
 function closeCart() {
-    carritoElement.classList.remove('carrito-visible');
-    carritoOverlay.classList.remove('active');
+    if (carritoElement) carritoElement.classList.remove('carrito-visible');
+    if (carritoOverlay) carritoOverlay.classList.remove('active');
     document.body.classList.remove('no-scroll');
 }
 
@@ -209,7 +213,7 @@ function emptyCart() {
         cart = [];
         appliedDiscount = 0;
         isDiscountApplied = false;
-        cuponInput.value = '';
+        if (cuponInput) cuponInput.value = '';
         saveCart();
     }
 }
@@ -286,10 +290,10 @@ function sendContactForm(event) {
     const message = document.getElementById('mensaje').value;
 
     const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:\n\n` +
-                             `*Nombre:* ${name}\n` +
-                             `*Correo:* ${email}\n` +
-                             `*Asunto:* ${subject}\n` +
-                             `*Mensaje:* ${message}\n\n`;
+                                `*Nombre:* ${name}\n` +
+                                `*Correo:* ${email}\n` +
+                                `*Asunto:* ${subject}\n` +
+                                `*Mensaje:* ${message}\n\n`;
 
     const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(urlWhatsApp, '_blank');
@@ -398,9 +402,11 @@ document.addEventListener('click', (event) => {
 // Lógica para el acordeón de las Preguntas Frecuentes
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-        item.classList.toggle('active');
-    });
+    if (question) {
+        question.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    }
 });
 
 // Inicialización de funciones
