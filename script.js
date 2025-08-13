@@ -9,7 +9,7 @@ const products = [
         id: "eco-100",
         name: "Fogón Tradicional",
         price: 450000,
-        img: "https://ecofogones.netlify.app/assets/fogontradicional1.png",
+        img: "https://github.com/stefi4564-cloud/Ecofogones/main/fogontradicional1.png",
         description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
         badge: "Más Popular",
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
