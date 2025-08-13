@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- ENLAZA TU ARCHIVO CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -80,110 +79,7 @@
                     <p class="section-subtitle">Descubre nuestra línea completa de fogones ecológicos.</p>
                 </div>
                 <div class="productos-grid">
-                    <!-- Producto 1: Fogón Tradicional -->
-                    <div class="producto fade-in">
-                        <div class="producto-imagen">
-                            <img src="fogontradicional.png" alt= " fogon tradicional" />
-                            <div class="producto-badge">Más Popular</div>
-                        </div>
-                        <div class="producto-info">
-                            <h3>Fogón Tradicional</h3>
-                            <p class="producto-descripcion">Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.</p>
-                            <div class="producto-caracteristicas">
-                                <span class="caracteristica">Acero Inoxidable</span>
-                                <span class="caracteristica">Familiar</span>
-                                <span class="caracteristica">Garantía 2 años</span>
-                            </div>
-                            <div class="producto-precio-container">
-                                <div>
-                                    <div class="producto-precio">$450.000</div>
-                                    <div class="precio-original">$500.000</div>
-                                </div>
-                            </div>
-                            <button class="agregar-carrito" data-id="eco-100">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
                     </div>
-
-                    <!-- Producto 2: Fogón de 2 boquillas -->
-                    <div class="producto fade-in">
-                        <div class="producto-imagen">
-                            <img src="fogonde2boquillas.png" alt="Fogón de 2 boquillas" />
-                            <div class="producto-badge">Recomendado</div>
-                        </div>
-                        <div class="producto-info">
-                            <h3>Fogón de 2 boquillas</h3>
-                            <p class="producto-descripcion">Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.</p>
-                            <div class="producto-caracteristicas">
-                                <span class="caracteristica">Gran Capacidad</span>
-                                <span class="caracteristica">Eco-friendly</span>
-                                <span class="caracteristica">Garantía 3 años</span>
-                            </div>
-                            <div class="producto-precio-container">
-                                <div>
-                                    <div class="producto-precio">$650.000</div>
-                                    <div class="precio-original">$750.000</div>
-                                </div>
-                            </div>
-                            <button class="agregar-carrito" data-id="eco-200">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Producto 3: Fogón de 3 boquillas -->
-                    <div class="producto fade-in">
-                        <div class="producto-imagen">
-                            <img src="fogonde3boquillas.png" alt="Fogón de 3 boquillas" />
-                            <div class="producto-badge">Premium</div>
-                        </div>
-                        <div class="producto-info">
-                            <h3>Fogón de 3 boquillas</h3>
-                            <p class="producto-descripcion">Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.</p>
-                            <div class="producto-caracteristicas">
-                                <span class="caracteristica">Uso Comercial</span>
-                                <span class="caracteristica">Alta Durabilidad</span>
-                                <span class="caracteristica">Garantía 5 años</span>
-                            </div>
-                            <div class="producto-precio-container">
-                                <div>
-                                    <div class="producto-precio">$1.200.000</div>
-                                    <div class="precio-original">$1.400.000</div>
-                                </div>
-                            </div>
-                            <button class="agregar-carrito" data-id="eco-300">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Producto 4: Plato para arado -->
-                    <div class="producto fade-in">
-                        <div class="producto-imagen">
-                            <img src="platoaradofogon.png" alt="Plato para arado"  />
-                            <div class="producto-badge">Nuevo</div>
-                        </div>
-                        <div class="producto-info">
-                            <h3>Plato para arado</h3>
-                            <p class="producto-descripcion">Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.</p>
-                            <div class="producto-caracteristicas">
-                                <span class="caracteristica">Acero al Carbono</span>
-                                <span class="caracteristica">Versátil</span>
-                                <span class="caracteristica">Fácil de Limpiar</span>
-                            </div>
-                            <div class="producto-precio-container">
-                                <div>
-                                    <div class="producto-precio">$120.000</div>
-                                    <div class="precio-original">$140.000</div>
-                                </div>
-                            </div>
-                            <button class="agregar-carrito" data-id="eco-400">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -320,7 +216,6 @@
         </section>
     </main>
 
-    <!-- CARRITO DE COMPRAS MODAL -->
     <div id="carrito-overlay" class="carrito-overlay"></div>
     <div id="carrito" class="carrito">
         <div class="carrito-header">
@@ -401,7 +296,7 @@
                 id: "eco-100",
                 name: "Fogón Tradicional",
                 price: 450000,
-                img: "https://ecofogones.netlify.app/assets/fogontradicional1.png",
+                img: "fogontradicional.png",
                 description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
                 badge: "Más Popular",
                 features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
@@ -411,7 +306,7 @@
                 id: "eco-200",
                 name: "Fogón de 2 boquillas",
                 price: 650000,
-                img: "https://ecofogones.netlify.app/assets/fogonde2boquillas.png",
+                img: "fogonde2boquillas.png",
                 description: "Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.",
                 badge: "Recomendado",
                 features: ["Gran Capacidad", "Eco-friendly", "Garantía 3 años"],
@@ -421,7 +316,7 @@
                 id: "eco-300",
                 name: "Fogón de 3 boquillas",
                 price: 1200000,
-                img: "https://ecofogones.netlify.app/assets/fogonde3boquillas.png",
+                img: "fogonde3boquillas.png",
                 description: "Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
                 badge: "Premium",
                 features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
@@ -431,13 +326,50 @@
                 id: "eco-400",
                 name: "Plato para arado",
                 price: 120000,
-                img: "https://ecofogones.netlify.app/assets/platoaradofogon.png",
+                img: "platoaradofogon.png",
                 description: "Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.",
                 badge: "Nuevo",
                 features: ["Acero al Carbono", "Versátil", "Fácil de Limpiar"],
                 originalPrice: 140000
             }
         ];
+
+        // Función para renderizar los productos en la página
+        function renderProducts() {
+            const productGrid = document.querySelector('.productos-grid');
+            if (!productGrid) return;
+            
+            productGrid.innerHTML = ''; // Limpiar el contenedor antes de renderizar
+            
+            products.forEach(product => {
+                const featuresHtml = product.features.map(feature => `<span class="caracteristica">${feature}</span>`).join('');
+                const productCard = document.createElement('div');
+                productCard.className = 'producto fade-in';
+                productCard.innerHTML = `
+                    <div class="producto-imagen">
+                        <img src="${product.img}" alt="${product.name}" />
+                        <div class="producto-badge">${product.badge}</div>
+                    </div>
+                    <div class="producto-info">
+                        <h3>${product.name}</h3>
+                        <p class="producto-descripcion">${product.description}</p>
+                        <div class="producto-caracteristicas">
+                            ${featuresHtml}
+                        </div>
+                        <div class="producto-precio-container">
+                            <div>
+                                <div class="producto-precio">${formatCurrency(product.price)}</div>
+                                <div class="precio-original">${formatCurrency(product.originalPrice)}</div>
+                            </div>
+                        </div>
+                        <button class="agregar-carrito" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
 
         // Códigos de descuento disponibles
         const discountCodes = {
@@ -474,6 +406,7 @@
         const cuponInput = document.getElementById('cupon-input');
         const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
         const contactForm = document.getElementById('contact-form');
+        const faqQuestions = document.querySelectorAll('.faq-question');
 
         if (isDiscountAppliedFlag && appliedDiscountCode) {
             appliedDiscount = appliedDiscountValue;
@@ -524,12 +457,12 @@
                             <div class="carrito-item-nombre">${product.name}</div>
                             <div class="carrito-item-precio">${formatCurrency(product.price)}</div>
                             <div class="carrito-item-cantidad">
-                                <button class="cantidad-btn" onclick="changeQuantity('${item.id}', -1)">-</button>
+                                <button class="cantidad-btn" data-id="${item.id}" data-change="-1">-</button>
                                 <span class="cantidad-numero">${item.qty}</span>
-                                <button class="cantidad-btn" onclick="changeQuantity('${item.id}', 1)">+</button>
+                                <button class="cantidad-btn" data-id="${item.id}" data-change="1">+</button>
                             </div>
                         </div>
-                        <button class="eliminar-item" onclick="removeItem('${item.id}')">
+                        <button class="eliminar-item" data-id="${item.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     `;
@@ -537,10 +470,23 @@
                 });
             }
 
-            const finalTotal = subtotal - appliedDiscount;
+            let finalTotal = subtotal;
+            if (isDiscountApplied) {
+                if (discountCodes[appliedDiscountCode].type === 'percentage') {
+                    appliedDiscount = subtotal * discountCodes[appliedDiscountCode].value;
+                }
+                finalTotal = subtotal - appliedDiscount;
+            }
+
             if (subtotalCarritoEl) subtotalCarritoEl.textContent = formatCurrency(subtotal);
             if (descuentoValorEl) descuentoValorEl.textContent = formatCurrency(appliedDiscount);
-            if (descuentoPorcentajeEl) descuentoPorcentajeEl.textContent = subtotal > 0 ? `${(appliedDiscount / subtotal * 100).toFixed(0)}%` : '0%';
+            if (descuentoPorcentajeEl) {
+                if (isDiscountApplied && discountCodes[appliedDiscountCode].type === 'percentage') {
+                    descuentoPorcentajeEl.textContent = `${discountCodes[appliedDiscountCode].value * 100}%`;
+                } else {
+                    descuentoPorcentajeEl.textContent = '0%';
+                }
+            }
             if (totalCarritoEl) totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
             if (contadorCarrito) {
                 contadorCarrito.textContent = totalItems;
@@ -583,6 +529,29 @@
             saveCart();
         }
 
+        function applyDiscountCode() {
+            const code = cuponInput.value.toUpperCase();
+            if (discountCodes[code]) {
+                const subtotal = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
+                if (discountCodes[code].type === 'percentage') {
+                    appliedDiscount = subtotal * discountCodes[code].value;
+                } else {
+                    appliedDiscount = discountCodes[code].value;
+                }
+                isDiscountApplied = true;
+                alert(`Cupón "${code}" aplicado correctamente: ${discountCodes[code].description}`);
+                cuponInput.disabled = true;
+                aplicarCuponBtn.disabled = true;
+            } else {
+                appliedDiscount = 0;
+                isDiscountApplied = false;
+                alert('Cupón no válido. Por favor, revisa el código.');
+                cuponInput.disabled = false;
+                aplicarCuponBtn.disabled = false;
+            }
+            saveCart();
+        }
+
         function openCart() {
             if (carritoElement) carritoElement.classList.add('carrito-visible');
             if (carritoOverlay) carritoOverlay.classList.add('active');
@@ -601,160 +570,96 @@
                 cart = [];
                 appliedDiscount = 0;
                 isDiscountApplied = false;
-                if (cuponInput) cuponInput.value = '';
+                if (cuponInput) {
+                    cuponInput.value = '';
+                    cuponInput.disabled = false;
+                }
+                if (aplicarCuponBtn) aplicarCuponBtn.disabled = false;
                 saveCart();
             }
         }
-
-        function applyDiscount(code) {
-            if (isDiscountApplied) {
-                alert('Ya se ha aplicado un cupón de descuento.');
-                return;
-            }
-
-            const coupon = discountCodes[code.toUpperCase()];
-            if (!coupon) {
-                alert('El cupón ingresado no es válido. Prueba: ECOFOGON10 o AHORRO50000');
-                return;
-            }
-
-            const subtotal = cart.reduce((total, item) => {
-                const product = products.find(p => p.id === item.id);
-                return total + (product ? product.price * item.qty : 0);
-            }, 0);
-
-            if (coupon.type === 'percentage') {
-                appliedDiscount = subtotal * coupon.value;
-            } else if (coupon.type === 'fixed') {
-                appliedDiscount = coupon.value;
-            }
-
-            isDiscountApplied = true;
-            saveCart();
-            alert(`¡Cupón "${code.toUpperCase()}" aplicado! Descuento de ${formatCurrency(appliedDiscount)}`);
-        }
-
-        function checkout() {
+        
+        function finalizeOrder() {
             if (cart.length === 0) {
-                alert('Tu carrito está vacío. Agrega productos para continuar.');
+                alert('El carrito está vacío. Agrega productos para finalizar tu pedido.');
                 return;
             }
-
-            let message = '¡Hola! Me interesa hacer el siguiente pedido de Ecofogones:\n\n';
+            let message = "Hola, me gustaría hacer un pedido de los siguientes productos:\n\n";
             let subtotal = 0;
-
             cart.forEach(item => {
                 const product = products.find(p => p.id === item.id);
                 if (product) {
-                    const subtotalItem = product.price * item.qty;
-                    subtotal += subtotalItem;
-                    message += `• *${product.name}*\n`;
-                    message += `  - Cantidad: ${item.qty}\n`;
-                    message += `  - Subtotal: ${formatCurrency(subtotalItem)}\n\n`;
+                    message += `- ${item.qty}x ${product.name} (${formatCurrency(product.price * item.qty)})\n`;
+                    subtotal += product.price * item.qty;
                 }
             });
-
-            const finalTotal = subtotal - appliedDiscount;
-            message += `🛒 *Resumen del Pedido*\n`;
-            message += `---------------------------\n`;
-            message += `Subtotal: ${formatCurrency(subtotal)}\n`;
+            message += `\nSubtotal: ${formatCurrency(subtotal)}`;
             if (isDiscountApplied) {
-                message += `Descuento: -${formatCurrency(appliedDiscount)}\n`;
+                message += `\nDescuento: -${formatCurrency(appliedDiscount)}`;
+                message += `\nTotal Final: ${formatCurrency(subtotal - appliedDiscount)}`;
             }
-            message += `*TOTAL: ${formatCurrency(finalTotal < 0 ? 0 : finalTotal)}*\n\n`;
-            message += '¿Podrían confirmarme la disponibilidad y los tiempos de entrega? ¡Gracias!';
-
-            const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
-            window.open(urlWhatsApp, '_blank');
+            message += `\n\n¿Podrían ayudarme a coordinar el envío?`;
+            
+            const whatsappUrl = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
-
+        
         // ============================================
-        // OTRAS FUNCIONES
+        // FUNCIONALIDADES ADICIONALES
         // ============================================
 
+        // FAQ Toggle
         function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const answer = faqItem.querySelector('.faq-answer');
-            const isActive = faqItem.classList.contains('active');
-            
-            // Cerrar todas las respuestas
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Si no estaba activa, activarla
-            if (!isActive) {
-                faqItem.classList.add('active');
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            element.classList.toggle('active');
+            answer.style.maxHeight = element.classList.contains('active') ? answer.scrollHeight + 'px' : '0';
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        }
+
+        // Event Listeners
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.agregar-carrito')) {
+                const id = e.target.closest('.agregar-carrito').dataset.id;
+                addToCart(id);
             }
-        }
+            if (e.target.closest('.cantidad-btn')) {
+                const id = e.target.closest('.cantidad-btn').dataset.id;
+                const change = parseInt(e.target.closest('.cantidad-btn').dataset.change);
+                changeQuantity(id, change);
+            }
+            if (e.target.closest('.eliminar-item')) {
+                const id = e.target.closest('.eliminar-item').dataset.id;
+                removeItem(id);
+            }
+        });
 
-        function sendContactForm(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('asunto').value;
-            const message = document.getElementById('mensaje').value;
-
-            const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:\n\n` +
-                                        `*Nombre:* ${name}\n` +
-                                        `*Correo:* ${email}\n` +
-                                        `*Asunto:* ${subject}\n` +
-                                        `*Mensaje:* ${message}\n\n`;+
-
-            const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(urlWhatsApp, '_blank');
-
-            contactForm.reset();
-        }
-
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-
-        // Eventos del carrito
         if (btnCarrito) btnCarrito.addEventListener('click', openCart);
         if (cerrarCarrito) cerrarCarrito.addEventListener('click', closeCart);
         if (carritoOverlay) carritoOverlay.addEventListener('click', closeCart);
         if (vaciarCarritoBtn) vaciarCarritoBtn.addEventListener('click', emptyCart);
-        if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', checkout);
-        if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', () => {
-            applyDiscount(cuponInput.value);
-        });
-
-        // Evento para el formulario de contacto
+        if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', finalizeOrder);
+        if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', applyDiscountCode);
         if (contactForm) {
-            contactForm.addEventListener('submit', sendContactForm);
-        }
-
-        // Evento para añadir productos al carrito
-        document.addEventListener('click', (event) => {
-            const botonAgregar = event.target.closest('.agregar-carrito');
-            if (botonAgregar) {
-                const id = botonAgregar.dataset.id;
-                addToCart(id);
-            }
-        });
-
-        // Navegación suave
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar carrito
-            updateCartDisplay();
-
-            // Navegación suave
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                alert('Mensaje enviado. Te contactaremos pronto.');
+                contactForm.reset();
             });
+        }
+        if (faqQuestions) {
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => toggleFaq(question));
+            });
+        }
+        
+        // Cargar carrito y renderizar productos al inicio
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartDisplay();
         });
+
     </script>
 </body>
-    </html>
+</html>
