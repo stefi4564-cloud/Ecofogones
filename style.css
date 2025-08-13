@@ -394,13 +394,13 @@ h3 { font-size: 1.5rem; }
 
 .producto-info h3 {
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
+    color: #2e7d32 !important; /* Fuerza el color del título */
     font-size: 1.6rem;
 }
 
 .producto-descripcion {
     font-size: 0.9rem;
-    color: #666;
+    color: #666 !important; /* Fuerza el color de la descripción */
     margin-bottom: 1.5rem;
     flex-grow: 1;
 }
@@ -414,7 +414,7 @@ h3 { font-size: 1.5rem; }
 
 .caracteristica {
     background-color: var(--bg-light);
-    color: var(--text-color);
+    color: #333 !important; /* Fuerza el color de las características */
     padding: 0.4rem 1rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -431,18 +431,18 @@ h3 { font-size: 1.5rem; }
 .producto-precio {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #2e7d32 !important; /* Fuerza el color del precio */
 }
 
 .precio-original {
     font-size: 1rem;
-    color: #333;
+    color: #333 !important; /* Fuerza el color del precio original */
     text-decoration: line-through;
 }
 
 .agregar-carrito {
-    background-color: var(--secondary-color);
-    color: var(--light-text-color);
+    background-color: #4caf50 !important; /* Fuerza el color del botón */
+    color: #fff !important; /* Fuerza el color del texto del botón */
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -968,10 +968,6 @@ footer {
     
     .hero-image {
         max-width: 100%;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
     }
 
     .footer-content {
