@@ -41,7 +41,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-light);
-    padding-right: 0; /* Se elimina el padding, ya que el carrito no está siempre visible */
+    padding-right: 0;
     overflow-x: hidden;
 }
 
@@ -119,7 +119,7 @@ h3 { font-size: 1.5rem; }
 .whatsapp-flotante {
     position: fixed;
     bottom: 2rem;
-    right: 2rem; /* Se ajusta la posición */
+    right: 2rem;
     background-color: #25d366;
     color: var(--light-text-color);
     width: 60px;
@@ -196,15 +196,14 @@ h3 { font-size: 1.5rem; }
     align-items: center;
 }
 
-/* Botón del carrito: Vuelve a ser visible y estático */
 #btn-carrito {
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-color); /* Icono del carrito negro */
+    color: var(--text-color);
     position: relative;
-    display: block; /* Vuelve a ser visible */
+    display: block;
     transition: transform 0.6s ease-in-out;
 }
 
@@ -212,13 +211,12 @@ h3 { font-size: 1.5rem; }
     color: var(--secondary-color);
 }
 
-/* Contador del carrito: Vuelve a ser visible, con números blancos */
 #contador-carrito {
     position: absolute;
     top: -5px;
     right: -5px;
     background-color: var(--accent-color);
-    color: var(--light-text-color); /* Texto en color blanco */
+    color: var(--light-text-color);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -229,7 +227,6 @@ h3 { font-size: 1.5rem; }
     font-weight: 700;
 }
 
-/* Animación de rebote para el carrito al agregar un producto */
 #btn-carrito.producto-agregado {
     animation: bounce 0.6s ease-in-out;
 }
@@ -240,7 +237,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .menu-toggler {
-    display: none; /* Oculto por defecto, visible en móviles */
+    display: none;
 }
 
 /* ================================================================= */
@@ -351,9 +348,13 @@ h3 { font-size: 1.5rem; }
     transition: all var(--transition-speed);
     border: 1px solid var(--shadow-light);
     position: relative;
-    /* Los productos se mantienen estáticos */
-    transform: none;
-    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
 }
 
 .producto-imagen {
@@ -366,6 +367,10 @@ h3 { font-size: 1.5rem; }
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-speed);
+}
+
+.producto:hover .producto-imagen img {
+    transform: scale(1.05);
 }
 
 .producto-badge {
@@ -384,63 +389,60 @@ h3 { font-size: 1.5rem; }
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 250px);
+    flex-grow: 1;
 }
 
 .producto-info h3 {
     margin-bottom: 0.5rem;
     color: var(--primary-color);
+    font-size: 1.6rem;
 }
 
-/* Se mantiene en color negro */
 .producto-descripcion {
     font-size: 0.9rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
     flex-grow: 1;
 }
 
 .producto-caracteristicas {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Se mantiene en color negro */
 .caracteristica {
     background-color: var(--bg-light);
     color: var(--text-color);
-    padding: 0.2rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 .producto-precio-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: 1rem;
+    margin-top: auto;
 }
 
-/* Se mantiene en color negro */
 .producto-precio {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
 }
 
-/* Se mantiene en color negro */
 .precio-original {
     font-size: 1rem;
     color: #333;
     text-decoration: line-through;
 }
 
-/* Botón "Agregar al Carrito" con fondo verde y texto negro */
 .agregar-carrito {
-    background-color: var(--secondary-color); /* Fondo verde */
-    color: var(--text-color); /* Letras negras */
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -462,25 +464,37 @@ h3 { font-size: 1.5rem; }
 
 /* Sección Acerca de */
 .about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
     padding: 8rem 2rem;
     background-color: var(--card-bg);
 }
 
-.about-image {
-    max-width: 500px;
+.about-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
 }
 
-.about-image img {
+.about-image {
+    max-width: 500px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
 }
 
 .about-content {
     max-width: 600px;
+}
+
+.mission-vision-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.mission-vision-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
 /* Sección de Preguntas Frecuentes */
@@ -609,9 +623,45 @@ h3 { font-size: 1.5rem; }
     gap: 0.75rem;
 }
 
+.contacto-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contacto-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: var(--bg-light);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    transition: all var(--transition-speed);
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+.contacto-form textarea {
+    resize: vertical;
+}
+
 .contacto-form .btn-primary {
     width: 100%;
 }
+
 
 /* ================================================================= */
 /* 4. CARRITO DE COMPRAS (MODAL) */
@@ -887,9 +937,10 @@ footer {
         justify-content: center;
     }
 
-    .about {
+    .about-content-container {
         flex-direction: column;
         text-align: center;
+        align-items: center;
     }
 
     .whatsapp-flotante {
