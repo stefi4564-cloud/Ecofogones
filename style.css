@@ -315,7 +315,7 @@ h3 { font-size: 1.5rem; }
 /* Sección de Productos */
 .productos {
     padding: 8rem 2rem;
-    background: var(--bg-light);
+    background: var(--card-bg);
 }
 
 .section-header {
