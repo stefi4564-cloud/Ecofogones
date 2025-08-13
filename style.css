@@ -433,7 +433,7 @@ h3 { font-size: 1.5rem; }
 /* Se mantiene en color negro */
 .precio-original {
     font-size: 1rem;
-    color: #999;
+    color: #333;
     text-decoration: line-through;
 }
 
