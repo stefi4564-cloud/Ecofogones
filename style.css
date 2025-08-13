@@ -378,7 +378,7 @@ h3 { font-size: 1.5rem; }
     top: 1rem;
     left: 1rem;
     background-color: var(--accent-color);
-    color: var(--light-text-color);
+    color: var(--text-color);
     padding: 0.4rem 1rem;
     border-radius: 999px;
     font-size: 0.8rem;
