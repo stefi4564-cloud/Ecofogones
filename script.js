@@ -9,7 +9,7 @@ const products = [
         id: "eco-100",
         name: "Fogón Tradicional",
         price: 450000,
-        img: "https://github.com/stefi4564-cloud/Ecofogones/main/fogontradicional1.png",
+        img: "fogontradicional1.png",
         description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
         badge: "Más Popular",
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
@@ -19,7 +19,7 @@ const products = [
         id: "eco-200",
         name: "Fogón de 2 boquillas",
         price: 650000,
-        img: "https://ecofogones.netlify.app/assets/fogonde2boquillas.png",
+        img: "fogonde2boquillas.png",
         description: "Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.",
         badge: "Recomendado",
         features: ["Gran Capacidad", "Eco-friendly", "Garantía 3 años"],
@@ -29,7 +29,7 @@ const products = [
         id: "eco-300",
         name: "Fogón de 3 boquillas",
         price: 1200000,
-        img: "https://ecofogones.netlify.app/assets/fogonde3boquillas.png",
+        img: "fogonde3boquillas.png",
         description: "Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
         badge: "Premium",
         features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
@@ -39,7 +39,7 @@ const products = [
         id: "eco-400",
         name: "Plato para arado",
         price: 120000,
-        img: "https://ecofogones.netlify.app/assets/platoaradofogon.png",
+        img: "platoaradofogon.png",
         description: "Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.",
         badge: "Nuevo",
         features: ["Acero al Carbono", "Versátil", "Fácil de Limpiar"],
@@ -319,7 +319,7 @@ function renderProducts() {
         productEl.className = 'producto fade-in';
         productEl.innerHTML = `
             <div class="producto-imagen">
-                <img src="${product.img}" alt="${product.name}" loading="lazy" />
+                <img src="${product.img}" alt="${product.name}"  />
                 ${product.badge ? `<div class="producto-badge">${product.badge}</div>` : ''}
             </div>
             <div class="producto-info">
@@ -360,17 +360,7 @@ const observerCallback = (entries, observer) => {
 };
 const fadeObserver = new IntersectionObserver(observerCallback, observerOptions);
 
-// Observador para lazy loading de imágenes
-const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.classList.add('loaded');
-            observer.unobserve(img);
-        }
-    });
-});
+
 
 // =================================================================
 // Eventos y Inicialización
