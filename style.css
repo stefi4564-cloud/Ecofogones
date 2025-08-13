@@ -343,7 +343,7 @@ h3 { font-size: 1.5rem; }
 .producto {
     background: var(--card-bg);
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: visible;
     box-shadow: var(--shadow-light);
     transition: all var(--transition-speed);
     border: 1px solid var(--shadow-light);
@@ -359,7 +359,7 @@ h3 { font-size: 1.5rem; }
 
 .producto-imagen {
     height: 250px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .producto-imagen img {
