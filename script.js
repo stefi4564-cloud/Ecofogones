@@ -1,70 +1,72 @@
-// ============================================
-// PRODUCTOS Y CARRITO DE COMPRAS COMPLETO
-// ============================================
+// =================================================================
+// Archivo: script.js
+// Descripción: Lógica para el carrito de compras y efectos dinámicos
+// =================================================================
 
-// Base de datos de productos
-const products = [
+// Productos: edátalos si quieres (precios en COP)
+productos constantes = [
     {
-        id: "eco-100",
-        name: "Fogón Tradicional",
-        price: 450000,
+        identificación: "eco-100",
+        nombre: "Fogón Tradicional",
+        precio: 450000,
         img: "fogontradicional1.png",
-        description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
-        badge: "Más Popular",
-        features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
-        originalPrice: 500000
+        descripción: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
+        Insignia: "Más Popular",
+        características: "Acero Inoxidable", "Familiar", "Garantía 2 años",
+        Precio original: 500000
     },
     {
-        id: "eco-200",
-        name: "Fogón de 2 boquillas",
-        price: 650000,
+        identificación: "eco-200",
+        nombre: "Fogón de 2 boquillas",
+        precio: 650000,
         img: "fogonde2boquillas.png",
-        description: "Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.",
-        badge: "Recomendado",
-        features: ["Gran Capacidad", "Eco-friendly", "Garantía 3 años"],
-        originalPrice: 750000
+        descripción: "Mayor capacidad para familias grandes de 6-10 personas. Diseño robusto y duradero con tecnología de combustión mejorada.",
+        Insignia: "Recomendado",
+        características: "Gran Capacidad", "Eco-friendly", "Garantía 3 años",
+        Precio original: 750000
     },
     {
-        id: "eco-300",
-        name: "Fogón de 3 boquillas",
-        price: 1200000,
+        identificación: "eco-300",
+        nombre: "Fogón de 3 boquillas",
+        precio: 1200000,
         img: "fogonde3boquillas.png",
-        description: "Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
-        badge: "Premium",
-        features: ["Uso Comercial", "Alta Durabilidad", "Garantía 5 años"],
-        originalPrice: 1400000
+        descripción: "Para restaurantes y cocinas comerciales. Máxima eficiencia y durabilidad. Construcción industrial con materiales de primera calidad.",
+        insignia: "Premium",
+        características: "Uso Comercial", "Alta Durabilidad", "Garantía 5 años",
+        Precio original: 1400000
     },
     {
-        id: "eco-400",
-        name: "Plato para arado",
-        price: 120000,
+        identificación: "eco-400",
+        nombre: "Platón para arado",
+        precio: 120000,
         img: "platoaradofogon.png",
-        description: "Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.",
-        badge: "Nuevo",
-        features: ["Acero al Carbono", "Versátil", "Fácil de Limpiar"],
-        originalPrice: 140000
+        descripción: "Accesorio ideal para usar con nuestros fogones, perfecto para preparar comidas en plancha. Compatible con todos los modelos.",
+        insignia: "Nuevo",
+        características: "Acero al Carbono", "Versátil", "Fácil de Limpiar",
+        Precio original: 140000
     }
 ];
 
 // Códigos de descuento disponibles
-const discountCodes = {
-    'ECOFOGON10': { type: 'percentage', value: 0.10, description: '10% de descuento en tu compra.' },
-    'AHORRO50000': { type: 'fixed', value: 50000, description: '$50.000 de descuento en tu compra.' }
+const códigosdedescuento = {
+    'ECOFOGON10': { tipo: 'porcentaje', valor: 0.10, descripción: '10% de descuento en tu compra.' },
+    'AHORRO50000': { tipo: 'fixed', valor: 50000, descripción: '$50.000 de descuento en tu compra.' }
 };
 
-let appliedDiscount = 0;
-let isDiscountApplied = false;
+deje que el descuento aplicado sea 0;
+deje que isDiscountApplied = falso;
 
 // Función para formato de moneda (COP)
-const formatCurrency = (n) => n.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+const formatCurrency = (n) => n.toLocaleString('es-CO', { estilo: 'moneda', moneda: 'COP', maximumFractionDigits: 0 });
 
-// Variables del carrito
-let cart = JSON.parse(localStorage.getItem('ecofogones_cart') || '[]');
-let appliedDiscountCode = localStorage.getItem('ecofogones_discount_code') || '';
-let appliedDiscountValue = parseFloat(localStorage.getItem('ecofogones_discount_value')) || 0;
-let isDiscountAppliedFlag = localStorage.getItem('ecofogones_is_discount_applied') === 'true';
+// =================================================================
+// Variables y elementos del DOM
+// =================================================================
+deje que el carrito sea JSON.parse(localStorage.getItem('ecofogones_cart') || '[]');
+deje que elCodigoDescuentoAplicado = localStorage.getItem('ecofogones_discount_code') || '';
+deje que el valorDescuentoAplicado = parseFloat(localStorage.getItem('ecofogones_discount_value')) || 0;
+deje que se aplique el descuento = localStorage.getItem('ecofogones_se_aplica_el_descuento') === 'true';
 
-// Elementos DOM
 const btnCarrito = document.getElementById('btn-carrito');
 const carritoElement = document.getElementById('carrito');
 const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -79,295 +81,339 @@ const carritoVacio = document.getElementById('carrito-vacio');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
 const cuponInput = document.getElementById('cupon-input');
-const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
-const contactForm = document.getElementById('contact-form');
-const faqQuestions = document.querySelectorAll('.faq-question');
+const aplicarCuponBtn = document.getElementById('aplicar-cupón-btn');
+const productosGrid = document.querySelector('.productos-grid');
+const contactForm = document.getElementById('formulario-de-contacto');
+const faqItems = document.querySelectorAll('.faq-item');
 
-if (isDiscountAppliedFlag && appliedDiscountCode) {
-    appliedDiscount = appliedDiscountValue;
-    isDiscountApplied = true;
-    if (cuponInput) cuponInput.value = appliedDiscountCode;
+
+si (isDiscountAppliedFlag && códigoDescuentoAplicado) {
+    DescuentoAplicado = ValorDescuentoAplicado;
+    isDescuentoAplicado = verdadero;
+    si (cuponInput) cuponInput.valor = codigoDescuentoAplicado;
 }
 
-// ============================================
-// FUNCIONES DEL CARRITO
-// ============================================
 
-function saveCart() {
-    localStorage.setItem('ecofogones_cart', JSON.stringify(cart));
+// =================================================================
+// Lógica para el carrito de compras
+// =================================================================
+función saveCart() {
+    localStorage.setItem('ecofogones_cart', JSON.stringify(carrito));
     localStorage.setItem('ecofogones_discount_code', isDiscountApplied ? cuponInput.value : '');
-    localStorage.setItem('ecofogones_discount_value', appliedDiscount);
-    localStorage.setItem('ecofogones_is_discount_applied', isDiscountApplied);
-    updateCartDisplay();
+    localStorage.setItem('ecofogones_discount_value', descuentoAplicado);
+    localStorage.setItem('ecofogones_tiene_descuento_aplicado', tieneDescuentoAplicado);
+    actualizarCartDisplay();
 }
 
-function updateCartDisplay() {
-    if (!listaCarrito) return;
+función updateCartDisplay() {
+    si (!listaCarrito) retorna;
     listaCarrito.innerHTML = '';
-    let subtotal = 0;
-    let totalItems = 0;
+    sea subtotal = 0;
+    deje que totalItems = 0;
 
-    if (cart.length === 0) {
-        if (carritoVacio) carritoVacio.style.display = 'block';
+    si (carrito.longitud === 0) {
+        if (carritoVacio) carritoVacio.style.display = 'bloque';
         if (vaciarCarritoBtn) vaciarCarritoBtn.style.display = 'none';
-        if (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'none';
-    } else {
+        si (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'none';
+    } demás {
         if (carritoVacio) carritoVacio.style.display = 'none';
-        if (vaciarCarritoBtn) vaciarCarritoBtn.style.display = 'block';
-        if (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'block';
+        if (vaciarCarritoBtn) vaciarCarritoBtn.style.display = 'bloquear';
+        si (finalizarPedidoBtn) finalizarPedidoBtn.style.display = 'block';
 
-        cart.forEach((item) => {
-            const product = products.find(p => p.id === item.id);
-            if (!product) return;
+        carrito.paraCada((artículo) => {
+            const producto = productos.find(p => p.id === item.id);
+            si (!producto) retorna;
 
-            const subtotalItem = product.price * item.qty;
+            const subtotalItem = producto.precio * articulo.cantidad;
             subtotal += subtotalItem;
-            totalItems += item.qty;
+            totalItems += articulo.cantidad;
 
             const itemEl = document.createElement('div');
             itemEl.className = 'carrito-item';
             itemEl.innerHTML = `
-                <img src="${product.img}" alt="${product.name}">
+                <img src="${producto.img}" alt="${producto.nombre}">
                 <div class="carrito-item-info">
-                    <div class="carrito-item-nombre">${product.name}</div>
-                    <div class="carrito-item-precio">${formatCurrency(product.price)}</div>
+                    <div class="carrito-item-nombre">${producto.nombre}</div>
+                    <div class="carrito-item-precio">${formatCurrency(producto.precio)}</div>
                     <div class="carrito-item-cantidad">
-                        <button class="cantidad-btn" data-id="${item.id}" data-change="-1">-</button>
+                        <button class="cantidad-btn" onclick="cambiarCantidad('${item.id}', -1)">-</button>
                         <span class="cantidad-numero">${item.qty}</span>
-                        <button class="cantidad-btn" data-id="${item.id}" data-change="1">+</button>
+                        <button class="cantidad-btn" onclick="cambiarCantidad('${item.id}', 1)">+</button>
                     </div>
                 </div>
-                <button class="eliminar-item" data-id="${item.id}">
+                <button class="eliminar-item" onclick="removeItem('${item.id}')">
                     <i class="fas fa-trash"></i>
-                </button>
+                </botón>
             `;
             listaCarrito.appendChild(itemEl);
         });
     }
 
-    let finalTotal = subtotal;
-    if (isDiscountApplied) {
-        if (discountCodes[appliedDiscountCode].type === 'percentage') {
-            appliedDiscount = subtotal * discountCodes[appliedDiscountCode].value;
-        }
-        finalTotal = subtotal - appliedDiscount;
-    }
-
-    if (subtotalCarritoEl) subtotalCarritoEl.textContent = formatCurrency(subtotal);
+    const finalTotal = subtotal - descuento aplicado;
+    si (subtotalCarritoEl) subtotalCarritoEl.textContent = formatCurrency(subtotal);
     if (descuentoValorEl) descuentoValorEl.textContent = formatCurrency(appliedDiscount);
-    if (descuentoPorcentajeEl) {
-        if (isDiscountApplied && discountCodes[appliedDiscountCode].type === 'percentage') {
-            descuentoPorcentajeEl.textContent = `${discountCodes[appliedDiscountCode].value * 100}%`;
-        } else {
-            descuentoPorcentajeEl.textContent = '0%';
-        }
-    }
-    if (totalCarritoEl) totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
-    if (contadorCarrito) {
+    if (descuentoPorcentajeEl) descuentoPorcentajeEl.textContent = subtotal > 0 ? `${(appliedDiscount / subtotal * 100).toFixed(0)}%` : '0%';
+    si (totalCarritoEl) totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
+    si (contadorCarrito) {
         contadorCarrito.textContent = totalItems;
         contadorCarrito.style.display = totalItems > 0 ? 'flex' : 'none';
     }
 }
 
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
-    if (!product) return;
+función addToCart(id) {
+    const producto = productos.find(p => p.id === id);
+    si (!producto) retorna;
 
-    const existingItem = cart.find(item => item.id === id);
-    if (existingItem) {
-        existingItem.qty += 1;
-    } else {
-        cart.push({ id: product.id, qty: 1 });
+    const elementoexistente = carrito.find(elemento => elemento.id === id);
+    si (elemento existente) {
+        elementoexistente.cantidad += 1;
+    } demás {
+        carrito.push({ id: producto.id, cantidad: 1 });
     }
-    saveCart();
-
+    guardarCarrito();
+    
     const cartButton = document.getElementById('btn-carrito');
-    if (cartButton) {
+    si (botoncarrito) {
         cartButton.classList.add('producto-agregado');
         setTimeout(() => cartButton.classList.remove('producto-agregado'), 600);
     }
 }
 
-function changeQuantity(id, change) {
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
+función changeQuantity(id, cambio) {
+    const item = carrito.find(i => i.id === id);
+    si (!item) retorna;
 
-    item.qty += change;
-    if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== id);
+    artículo.cantidad += cambio;
+    si (cantidad_artículo <= 0) {
+        carrito = carrito.filtro(i => i.id !== id);
     }
-    saveCart();
+    guardarCarrito();
 }
 
-function removeItem(id) {
-    cart = cart.filter(i => i.id !== id);
-    saveCart();
+función removeItem(id) {
+    carrito = carrito.filtro(i => i.id !== id);
+    guardarCarrito();
 }
 
-function applyDiscountCode() {
-    const code = cuponInput.value.toUpperCase();
-    if (discountCodes[code]) {
-        const subtotal = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
-        if (discountCodes[code].type === 'percentage') {
-            appliedDiscount = subtotal * discountCodes[code].value;
-        } else {
-            appliedDiscount = discountCodes[code].value;
-        }
-        isDiscountApplied = true;
-        alert(`Cupón "${code}" aplicado correctamente: ${discountCodes[code].description}`);
-        cuponInput.disabled = true;
-        aplicarCuponBtn.disabled = true;
-    } else {
-        appliedDiscount = 0;
-        isDiscountApplied = false;
-        alert('Cupón no válido. Por favor, revisa el código.');
-        cuponInput.disabled = false;
-        aplicarCuponBtn.disabled = false;
-    }
-    saveCart();
-}
-
-function openCart() {
+función openCart() {
     if (carritoElement) carritoElement.classList.add('carrito-visible');
-    if (carritoOverlay) carritoOverlay.classList.add('active');
+    si (carritoOverlay) carritoOverlay.classList.add('activo');
     document.body.classList.add('no-scroll');
 }
 
-function closeCart() {
+función closeCart() {
     if (carritoElement) carritoElement.classList.remove('carrito-visible');
-    if (carritoOverlay) carritoOverlay.classList.remove('active');
+    si (carritoOverlay) carritoOverlay.classList.remove('activo');
     document.body.classList.remove('no-scroll');
 }
 
-function emptyCart() {
-    if (cart.length === 0) return;
+función emptyCart() {
+    si (carrito.length === 0) retorna;
     if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
-        cart = [];
-        appliedDiscount = 0;
-        isDiscountApplied = false;
-        if (cuponInput) {
-            cuponInput.value = '';
-            cuponInput.disabled = false;
-        }
-        if (aplicarCuponBtn) aplicarCuponBtn.disabled = false;
-        saveCart();
+        carrito = [];
+        descuento aplicado = 0;
+        isDiscountApplied = falso;
+        si (cuponInput) cuponInput.valor = '';
+        guardarCarrito();
     }
 }
 
-function finalizeOrder() {
-    if (cart.length === 0) {
-        alert('El carrito está vacío. Agrega productos para finalizar tu pedido.');
-        return;
+función aplicarDescuento(código) {
+    si (seAplicaDescuento) {
+        alert('Ya se ha aplicado un cupón de descuento.');
+        devolver;
     }
-    let message = "Hola, me gustaría hacer un pedido de los siguientes productos:\n\n";
-    let subtotal = 0;
-    cart.forEach(item => {
-        const product = products.find(p => p.id === item.id);
-        if (product) {
-            message += `- ${item.qty}x ${product.name} (${formatCurrency(product.price * item.qty)})\n`;
-            subtotal += product.price * item.qty;
+
+    const cupon = codigosdescuento[code.toUpperCase()];
+    si (!cupón) {
+        alert('El cupón ingresado no es válido.');
+        devolver;
+    }
+
+    const subtotal = cart.reduce((total, artículo) => {
+        const producto = productos.find(p => p.id === item.id);
+        devolver total + (producto ? producto.precio * articulo.cantidad : 0);
+    }, 0);
+
+    si (cupón.tipo === 'porcentaje') {
+        descuentoAplicado = subtotal * valorCupón;
+    } de lo contrario si (cupón.tipo === 'fijo') {
+        descuentoAplicado = cupón.valor;
+    }
+    
+    isDescuentoAplicado = verdadero;
+    guardarCarrito();
+    alert(`Â¡CupÃ³n "${code.toUpperCase()}" aplicado! Descuento de ${formatCurrency(appliedDiscount)}`);
+}
+
+función checkout() {
+    si (carrito.longitud === 0) {
+        alert('Tu carrito está vacío. Agrega productos para continuar.');
+        devolver;
+    }
+
+    let mensaje = '¡Hola! Me interesa hacer el siguiente pedido de Ecofogones:\n\n';
+    sea subtotal = 0;
+
+    carrito.paraCada(artículo => {
+        const producto = productos.find(p => p.id === item.id);
+        si (producto) {
+            const subtotalItem = producto.precio * articulo.cantidad;
+            subtotal += subtotalItem;
+            mensaje += `• *${product.name}*\n`;
+            mensaje += ` - Cantidad: ${item.qty}\n`;
+            mensaje += ` - Subtotal: ${formatCurrency(subtotalItem)}\n\n`;
         }
     });
-    message += `\nSubtotal: ${formatCurrency(subtotal)}`;
-    if (isDiscountApplied) {
-        message += `\nDescuento: -${formatCurrency(appliedDiscount)}`;
-        message += `\nTotal Final: ${formatCurrency(subtotal - appliedDiscount)}`;
-    }
-    message += `\n\n¿Podrían ayudarme a coordinar el envío?`;
 
-    const whatsappUrl = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const finalTotal = subtotal - descuento aplicado;
+    mensaje += `ðŸ›' *Resumen del Pedido*\n`;
+    mensaje += `---------------------------\n`;
+    mensaje += `Subtotal: ${formatCurrency(subtotal)}\n`;
+    si (seAplicaDescuento) {
+        mensaje += `Descuento: -${formatCurrency(appliedDiscount)}\n`;
+    }
+    mensaje += `*TOTAL: ${formatCurrency(finalTotal < 0 ? 0 : finalTotal)}*\n\n`;
+    message += 'Â¿PodrÃan confirmarme la disponibilidad y los tiempos de entrega? ¡Gracias!';
+
+    const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(mensaje)}`;
+    ventana.open(urlWhatsApp, '_blank');
 }
 
-// ============================================
-// FUNCIONALIDADES ADICIONALES
-// ============================================
 
-// Función para renderizar los productos en la página
-function renderProducts() {
-    const productGrid = document.querySelector('.productos-grid');
-    if (!productGrid) return;
+función sendContactForm(evento) {
+    evento.preventDefault();
 
-    productGrid.innerHTML = ''; // Limpiar el contenedor antes de renderizar
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    constante asunto = documento.getElementById('asunto').valor;
+    const mensaje = document.getElementById('mensaje').value;
 
-    products.forEach(product => {
-        const featuresHtml = product.features.map(feature => `<span class="caracteristica">${feature}</span>`).join('');
-        const productCard = document.createElement('div');
-        productCard.className = 'producto fade-in';
-        productCard.innerHTML = `
+    const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:\n\n` +
+                                `*Nombre:* ${name}\n` +
+                                `*Correo:* ${email}\n` +
+                                `*Asunto:* ${asunto}\n` +
+                                `*Mensaje:* ${message}\n\n`;
+
+    constante urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
+    ventana.open(urlWhatsApp, '_blank');
+
+    formularioContacto.reset();
+}
+
+
+// =================================================================
+// Lógica para la UI y la página
+// =================================================================
+
+// Renderizar productos dinámicamente
+función renderProducts() {
+    si (!productosGrid) {
+        console.error("El contenedor de productos no se encontró. Asegúrese de que el HTML esté cargado antes.");
+        devolver;
+    }
+
+    productosGrid.innerHTML = '';
+    productos.paraCada(producto => {
+        const productoEl = document.createElement('div');
+        productEl.className = 'producto fundido';
+        productoEl.innerHTML = `
             <div class="producto-imagen">
-                <img src="${product.img}" alt="${product.name}" />
-                <div class="producto-badge">${product.badge}</div>
+                <img src="${producto.img}" alt="${producto.nombre}" cargando="perezoso" />
+                ${producto.insignia ? `<div class="producto-insignia">${producto.insignia}</div>` : ''}
             </div>
-            <div class="producto-info">
-                <h3>${product.name}</h3>
-                <p class="producto-descripcion">${product.description}</p>
+            <div class="información del producto">
+                <h3>${producto.nombre}</h3>
+                <p class="producto-descripcion">${producto.descripcion}</p>
                 <div class="producto-caracteristicas">
-                    ${featuresHtml}
+                    ${producto.características.mapa(característica => `<span class="caracteristica">${característica}</span>`).join('')}
                 </div>
-                <div class="producto-precio-container">
+                <div class="producto-precio-contenedor">
                     <div>
-                        <div class="producto-precio">${formatCurrency(product.price)}</div>
-                        <div class="precio-original">${formatCurrency(product.originalPrice)}</div>
+                        <div class="producto-precio">${formatCurrency(producto.precio)}</div>
+                        <div class="precio-original">${formatCurrency(producto.precio-original)}</div>
                     </div>
                 </div>
                 <button class="agregar-carrito" data-id="${product.id}">
                     <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                </button>
+                </botón>
             </div>
         `;
-        productGrid.appendChild(productCard);
+        productosGrid.appendChild(productoEl);
     });
 }
 
-// FAQ Toggle
-function toggleFaq(element) {
-    const answer = element.nextElementSibling;
-    const icon = element.querySelector('i');
-    element.classList.toggle('active');
-    answer.style.maxHeight = element.classList.contains('active') ? answer.scrollHeight + 'px' : '0';
-    icon.classList.toggle('fa-chevron-up');
-    icon.classList.toggle('fa-chevron-down');
+// Observador para animaciones de scroll
+const fadeInElements = document.querySelectorAll('.fade-in');
+const observerOptions = {
+    raíz: nula,
+    rootMargin: '0px',
+    umbral: 0,1
+};
+const observerCallback = (entradas, observador) => {
+    entradas.paraCada(entrada => {
+        si (entrada.isIntersecting) {
+            entrada.target.classList.add('visible');
+            observador.unobserve(entrada.objetivo);
+        }
+    });
+};
+const fadeObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+// Observador para carga diferida de imágenes
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+const lazyLoadObserver = new IntersectionObserver((entradas, observador) => {
+    entradas.paraCada(entrada => {
+        si (entrada.isIntersecting) {
+            const img = entrada.objetivo;
+            img.classList.add('cargado');
+            observador.unobserve(img);
+        }
+    });
+});
+
+// =================================================================
+// Eventos e Inicialización
+// =================================================================
+// Eventos del carrito
+si (btnCarrito) btnCarrito.addEventListener('click', openCart);
+if (cerrarCarrito) cerrarCarrito.addEventListener('click', closeCart);
+si (carritoOverlay) carritoOverlay.addEventListener('click', closeCart);
+if (vaciarCarritoBtn) vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', checkout);
+if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', () => {
+    aplicarDescuento(cuponInput.valor);
+});
+
+// Evento para el formulario de contacto
+si (contactForm) {
+    contactForm.addEventListener('enviar', sendContactForm);
 }
 
-// Event Listeners
-document.addEventListener('click', (e) => {
-    if (e.target.closest('.agregar-carrito')) {
-        const id = e.target.closest('.agregar-carrito').dataset.id;
-        addToCart(id);
-    }
-    if (e.target.closest('.cantidad-btn')) {
-        const id = e.target.closest('.cantidad-btn').dataset.id;
-        const change = parseInt(e.target.closest('.cantidad-btn').dataset.change);
-        changeQuantity(id, change);
-    }
-    if (e.target.closest('.eliminar-item')) {
-        const id = e.target.closest('.eliminar-item').dataset.id;
-        removeItem(id);
+// Evento para añadir productos al carrito (delegado)
+document.addEventListener('clic', (evento) => {
+    const botonAgregar = event.target.closest('.agregar-carrito');
+    si (botonAgregar) {
+        const id = botonAgregar.dataset.id;
+        añadirAlCarrito(id);
     }
 });
 
-if (btnCarrito) btnCarrito.addEventListener('click', openCart);
-if (cerrarCarrito) cerrarCarrito.addEventListener('click', closeCart);
-if (carritoOverlay) carritoOverlay.addEventListener('click', closeCart);
-if (vaciarCarritoBtn) vaciarCarritoBtn.addEventListener('click', emptyCart);
-if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', finalizeOrder);
-if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', applyDiscountCode);
-if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('Mensaje enviado. Te contactaremos pronto.');
-        contactForm.reset();
-    });
-}
-if (faqQuestions) {
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => toggleFaq(question));
-    });
-}
+// Lógica para el acordeón de las Preguntas Frecuentes
+faqItems.forEach(elemento => {
+    constante pregunta = item.querySelector('.faq-pregunta');
+    si (pregunta) {
+        pregunta.addEventListener('clic', () => {
+            item.classList.toggle('activo');
+        });
+    }
+});
 
-// Cargar carrito y renderizar productos al inicio
-document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
-    updateCartDisplay();
+// Inicialización de funciones
+documento.addEventListener('DOMContentLoaded', () => {
+    renderProductos();
+    actualizarCartDisplay();
+    
+    fadeInElements.forEach(el => fadeObserver.observe(el));
+    lazyImages.forEach(img => lazyLoadObserver.observe(img));
 });
