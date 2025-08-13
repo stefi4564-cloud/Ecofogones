@@ -312,7 +312,7 @@ h3 { font-size: 1.5rem; }
 /* Sección de Productos */
 .productos {
     padding: 8rem 2rem;
-    background: var(--card-bg);
+    background: var(--primary-color);
 }
 
 .section-header {
@@ -341,7 +341,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .producto {
-    background: var(--card-bg);
+    background: var(--secondary-color);
     border-radius: var(--border-radius);
     overflow: visible;
     box-shadow: var(--shadow-light);
@@ -442,7 +442,7 @@ h3 { font-size: 1.5rem; }
 
 .agregar-carrito {
     background-color: #4caf50 !important; /* Fuerza el color del botón */
-    color: #fff !important; /* Fuerza el color del texto del botón */
+    color: #333 !important; /* Fuerza el color del texto del botón */
     border: none;
     padding: 1rem;
     border-radius: 999px;
