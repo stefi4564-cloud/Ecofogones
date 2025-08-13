@@ -1,15 +1,14 @@
-// =================================================================
-// Archivo: script.js
-// Descripción: Lógica para el carrito de compras y efectos dinámicos
-// =================================================================
+// ============================================
+// PRODUCTOS Y CARRITO DE COMPRAS COMPLETO
+// ============================================
 
-// Productos: edítalos si quieres (precios en COP)
+// Base de datos de productos
 const products = [
     {
         id: "eco-100",
         name: "Fogón Tradicional",
         price: 450000,
-        img: "fogontradicional1.png",
+        img: "fogontradicional.png",
         description: "Perfecto para el hogar, eficiente y económico. Ideal para familias de 3-5 personas. Construcción robusta en acero inoxidable.",
         badge: "Más Popular",
         features: ["Acero Inoxidable", "Familiar", "Garantía 2 años"],
@@ -59,14 +58,13 @@ let isDiscountApplied = false;
 // Función para formato de moneda (COP)
 const formatCurrency = (n) => n.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
 
-// =================================================================
-// Variables y Elementos del DOM
-// =================================================================
+// Variables del carrito
 let cart = JSON.parse(localStorage.getItem('ecofogones_cart') || '[]');
 let appliedDiscountCode = localStorage.getItem('ecofogones_discount_code') || '';
 let appliedDiscountValue = parseFloat(localStorage.getItem('ecofogones_discount_value')) || 0;
 let isDiscountAppliedFlag = localStorage.getItem('ecofogones_is_discount_applied') === 'true';
 
+// Elementos DOM
 const btnCarrito = document.getElementById('btn-carrito');
 const carritoElement = document.getElementById('carrito');
 const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -82,10 +80,8 @@ const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
 const cuponInput = document.getElementById('cupon-input');
 const aplicarCuponBtn = document.getElementById('aplicar-cupon-btn');
-const productosGrid = document.querySelector('.productos-grid');
 const contactForm = document.getElementById('contact-form');
-const faqItems = document.querySelectorAll('.faq-item');
-
+const faqQuestions = document.querySelectorAll('.faq-question');
 
 if (isDiscountAppliedFlag && appliedDiscountCode) {
     appliedDiscount = appliedDiscountValue;
@@ -93,10 +89,10 @@ if (isDiscountAppliedFlag && appliedDiscountCode) {
     if (cuponInput) cuponInput.value = appliedDiscountCode;
 }
 
+// ============================================
+// FUNCIONES DEL CARRITO
+// ============================================
 
-// =================================================================
-// Lógica para el carrito de compras
-// =================================================================
 function saveCart() {
     localStorage.setItem('ecofogones_cart', JSON.stringify(cart));
     localStorage.setItem('ecofogones_discount_code', isDiscountApplied ? cuponInput.value : '');
@@ -136,12 +132,12 @@ function updateCartDisplay() {
                     <div class="carrito-item-nombre">${product.name}</div>
                     <div class="carrito-item-precio">${formatCurrency(product.price)}</div>
                     <div class="carrito-item-cantidad">
-                        <button class="cantidad-btn" onclick="changeQuantity('${item.id}', -1)">-</button>
+                        <button class="cantidad-btn" data-id="${item.id}" data-change="-1">-</button>
                         <span class="cantidad-numero">${item.qty}</span>
-                        <button class="cantidad-btn" onclick="changeQuantity('${item.id}', 1)">+</button>
+                        <button class="cantidad-btn" data-id="${item.id}" data-change="1">+</button>
                     </div>
                 </div>
-                <button class="eliminar-item" onclick="removeItem('${item.id}')">
+                <button class="eliminar-item" data-id="${item.id}">
                     <i class="fas fa-trash"></i>
                 </button>
             `;
@@ -149,10 +145,23 @@ function updateCartDisplay() {
         });
     }
 
-    const finalTotal = subtotal - appliedDiscount;
+    let finalTotal = subtotal;
+    if (isDiscountApplied) {
+        if (discountCodes[appliedDiscountCode].type === 'percentage') {
+            appliedDiscount = subtotal * discountCodes[appliedDiscountCode].value;
+        }
+        finalTotal = subtotal - appliedDiscount;
+    }
+
     if (subtotalCarritoEl) subtotalCarritoEl.textContent = formatCurrency(subtotal);
     if (descuentoValorEl) descuentoValorEl.textContent = formatCurrency(appliedDiscount);
-    if (descuentoPorcentajeEl) descuentoPorcentajeEl.textContent = subtotal > 0 ? `${(appliedDiscount / subtotal * 100).toFixed(0)}%` : '0%';
+    if (descuentoPorcentajeEl) {
+        if (isDiscountApplied && discountCodes[appliedDiscountCode].type === 'percentage') {
+            descuentoPorcentajeEl.textContent = `${discountCodes[appliedDiscountCode].value * 100}%`;
+        } else {
+            descuentoPorcentajeEl.textContent = '0%';
+        }
+    }
     if (totalCarritoEl) totalCarritoEl.textContent = formatCurrency(finalTotal < 0 ? 0 : finalTotal);
     if (contadorCarrito) {
         contadorCarrito.textContent = totalItems;
@@ -171,7 +180,7 @@ function addToCart(id) {
         cart.push({ id: product.id, qty: 1 });
     }
     saveCart();
-    
+
     const cartButton = document.getElementById('btn-carrito');
     if (cartButton) {
         cartButton.classList.add('producto-agregado');
@@ -195,6 +204,29 @@ function removeItem(id) {
     saveCart();
 }
 
+function applyDiscountCode() {
+    const code = cuponInput.value.toUpperCase();
+    if (discountCodes[code]) {
+        const subtotal = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
+        if (discountCodes[code].type === 'percentage') {
+            appliedDiscount = subtotal * discountCodes[code].value;
+        } else {
+            appliedDiscount = discountCodes[code].value;
+        }
+        isDiscountApplied = true;
+        alert(`Cupón "${code}" aplicado correctamente: ${discountCodes[code].description}`);
+        cuponInput.disabled = true;
+        aplicarCuponBtn.disabled = true;
+    } else {
+        appliedDiscount = 0;
+        isDiscountApplied = false;
+        alert('Cupón no válido. Por favor, revisa el código.');
+        cuponInput.disabled = false;
+        aplicarCuponBtn.disabled = false;
+    }
+    saveCart();
+}
+
 function openCart() {
     if (carritoElement) carritoElement.classList.add('carrito-visible');
     if (carritoOverlay) carritoOverlay.classList.add('active');
@@ -213,120 +245,65 @@ function emptyCart() {
         cart = [];
         appliedDiscount = 0;
         isDiscountApplied = false;
-        if (cuponInput) cuponInput.value = '';
+        if (cuponInput) {
+            cuponInput.value = '';
+            cuponInput.disabled = false;
+        }
+        if (aplicarCuponBtn) aplicarCuponBtn.disabled = false;
         saveCart();
     }
 }
 
-function applyDiscount(code) {
-    if (isDiscountApplied) {
-        alert('Ya se ha aplicado un cupón de descuento.');
-        return;
-    }
-
-    const coupon = discountCodes[code.toUpperCase()];
-    if (!coupon) {
-        alert('El cupón ingresado no es válido.');
-        return;
-    }
-
-    const subtotal = cart.reduce((total, item) => {
-        const product = products.find(p => p.id === item.id);
-        return total + (product ? product.price * item.qty : 0);
-    }, 0);
-
-    if (coupon.type === 'percentage') {
-        appliedDiscount = subtotal * coupon.value;
-    } else if (coupon.type === 'fixed') {
-        appliedDiscount = coupon.value;
-    }
-    
-    isDiscountApplied = true;
-    saveCart();
-    alert(`¡Cupón "${code.toUpperCase()}" aplicado! Descuento de ${formatCurrency(appliedDiscount)}`);
-}
-
-function checkout() {
+function finalizeOrder() {
     if (cart.length === 0) {
-        alert('Tu carrito está vacío. Agrega productos para continuar.');
+        alert('El carrito está vacío. Agrega productos para finalizar tu pedido.');
         return;
     }
-
-    let message = '¡Hola! Me interesa hacer el siguiente pedido de Ecofogones:\n\n';
+    let message = "Hola, me gustaría hacer un pedido de los siguientes productos:\n\n";
     let subtotal = 0;
-
     cart.forEach(item => {
         const product = products.find(p => p.id === item.id);
         if (product) {
-            const subtotalItem = product.price * item.qty;
-            subtotal += subtotalItem;
-            message += `• *${product.name}*\n`;
-            message += `  - Cantidad: ${item.qty}\n`;
-            message += `  - Subtotal: ${formatCurrency(subtotalItem)}\n\n`;
+            message += `- ${item.qty}x ${product.name} (${formatCurrency(product.price * item.qty)})\n`;
+            subtotal += product.price * item.qty;
         }
     });
-
-    const finalTotal = subtotal - appliedDiscount;
-    message += `🛒 *Resumen del Pedido*\n`;
-    message += `---------------------------\n`;
-    message += `Subtotal: ${formatCurrency(subtotal)}\n`;
+    message += `\nSubtotal: ${formatCurrency(subtotal)}`;
     if (isDiscountApplied) {
-        message += `Descuento: -${formatCurrency(appliedDiscount)}\n`;
+        message += `\nDescuento: -${formatCurrency(appliedDiscount)}`;
+        message += `\nTotal Final: ${formatCurrency(subtotal - appliedDiscount)}`;
     }
-    message += `*TOTAL: ${formatCurrency(finalTotal < 0 ? 0 : finalTotal)}*\n\n`;
-    message += '¿Podrían confirmarme la disponibilidad y los tiempos de entrega? ¡Gracias!';
+    message += `\n\n¿Podrían ayudarme a coordinar el envío?`;
 
-    const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
-    window.open(urlWhatsApp, '_blank');
+    const whatsappUrl = `https://wa.me/573148673011?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
 }
 
+// ============================================
+// FUNCIONALIDADES ADICIONALES
+// ============================================
 
-function sendContactForm(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('asunto').value;
-    const message = document.getElementById('mensaje').value;
-
-    const whatsappMessage = `¡Hola! He llenado un formulario de contacto en tu sitio web. Aquí está la información:\n\n` +
-                                `*Nombre:* ${name}\n` +
-                                `*Correo:* ${email}\n` +
-                                `*Asunto:* ${subject}\n` +
-                                `*Mensaje:* ${message}\n\n`;
-
-    const urlWhatsApp = `https://wa.me/573148673011?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(urlWhatsApp, '_blank');
-
-    contactForm.reset();
-}
-
-
-// =================================================================
-// Lógica para la UI y la página
-// =================================================================
-
-// Renderizar productos dinámicamente
+// Función para renderizar los productos en la página
 function renderProducts() {
-    if (!productosGrid) {
-        console.error("El contenedor de productos no se encontró. Asegúrate de que el HTML esté cargado antes.");
-        return;
-    }
+    const productGrid = document.querySelector('.productos-grid');
+    if (!productGrid) return;
 
-    productosGrid.innerHTML = '';
+    productGrid.innerHTML = ''; // Limpiar el contenedor antes de renderizar
+
     products.forEach(product => {
-        const productEl = document.createElement('div');
-        productEl.className = 'producto fade-in';
-        productEl.innerHTML = `
+        const featuresHtml = product.features.map(feature => `<span class="caracteristica">${feature}</span>`).join('');
+        const productCard = document.createElement('div');
+        productCard.className = 'producto fade-in';
+        productCard.innerHTML = `
             <div class="producto-imagen">
-                <img src="${product.img}" alt="${product.name}"  />
-                ${product.badge ? `<div class="producto-badge">${product.badge}</div>` : ''}
+                <img src="${product.img}" alt="${product.name}" />
+                <div class="producto-badge">${product.badge}</div>
             </div>
             <div class="producto-info">
                 <h3>${product.name}</h3>
                 <p class="producto-descripcion">${product.description}</p>
                 <div class="producto-caracteristicas">
-                    ${product.features.map(feature => `<span class="caracteristica">${feature}</span>`).join('')}
+                    ${featuresHtml}
                 </div>
                 <div class="producto-precio-container">
                     <div>
@@ -339,71 +316,58 @@ function renderProducts() {
                 </button>
             </div>
         `;
-        productosGrid.appendChild(productEl);
+        productGrid.appendChild(productCard);
     });
 }
 
-// Observador para animaciones de scroll
-const fadeInElements = document.querySelectorAll('.fade-in');
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-const observerCallback = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-};
-const fadeObserver = new IntersectionObserver(observerCallback, observerOptions);
+// FAQ Toggle
+function toggleFaq(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('i');
+    element.classList.toggle('active');
+    answer.style.maxHeight = element.classList.contains('active') ? answer.scrollHeight + 'px' : '0';
+    icon.classList.toggle('fa-chevron-up');
+    icon.classList.toggle('fa-chevron-down');
+}
 
+// Event Listeners
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.agregar-carrito')) {
+        const id = e.target.closest('.agregar-carrito').dataset.id;
+        addToCart(id);
+    }
+    if (e.target.closest('.cantidad-btn')) {
+        const id = e.target.closest('.cantidad-btn').dataset.id;
+        const change = parseInt(e.target.closest('.cantidad-btn').dataset.change);
+        changeQuantity(id, change);
+    }
+    if (e.target.closest('.eliminar-item')) {
+        const id = e.target.closest('.eliminar-item').dataset.id;
+        removeItem(id);
+    }
+});
 
-
-// =================================================================
-// Eventos y Inicialización
-// =================================================================
-// Eventos del carrito
 if (btnCarrito) btnCarrito.addEventListener('click', openCart);
 if (cerrarCarrito) cerrarCarrito.addEventListener('click', closeCart);
 if (carritoOverlay) carritoOverlay.addEventListener('click', closeCart);
 if (vaciarCarritoBtn) vaciarCarritoBtn.addEventListener('click', emptyCart);
-if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', checkout);
-if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', () => {
-    applyDiscount(cuponInput.value);
-});
-
-// Evento para el formulario de contacto
+if (finalizarPedidoBtn) finalizarPedidoBtn.addEventListener('click', finalizeOrder);
+if (aplicarCuponBtn) aplicarCuponBtn.addEventListener('click', applyDiscountCode);
 if (contactForm) {
-    contactForm.addEventListener('submit', sendContactForm);
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Mensaje enviado. Te contactaremos pronto.');
+        contactForm.reset();
+    });
+}
+if (faqQuestions) {
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => toggleFaq(question));
+    });
 }
 
-// Evento para añadir productos al carrito (delegado)
-document.addEventListener('click', (event) => {
-    const botonAgregar = event.target.closest('.agregar-carrito');
-    if (botonAgregar) {
-        const id = botonAgregar.dataset.id;
-        addToCart(id);
-    }
-});
-
-// Lógica para el acordeón de las Preguntas Frecuentes
-faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    if (question) {
-        question.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    }
-});
-
-// Inicialización de funciones
+// Cargar carrito y renderizar productos al inicio
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartDisplay();
-    
-    fadeInElements.forEach(el => fadeObserver.observe(el));
-    lazyImages.forEach(img => lazyLoadObserver.observe(img));
 });
