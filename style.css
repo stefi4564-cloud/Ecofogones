@@ -345,7 +345,7 @@ h3 { font-size: 1.5rem; }
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow-light);
-    transition: all var(--transition-speed);
+    transition: all var(--transition-speed) ease-out;
     border: 1px solid #e0e0e0;
     position: relative;
     display: flex;
@@ -519,6 +519,7 @@ h3 { font-size: 1.5rem; }
 
 .faq-item:hover {
     box-shadow: var(--shadow-medium);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .faq-question {
@@ -696,7 +697,7 @@ h3 { font-size: 1.5rem; }
     width: 400px;
     max-width: 90vw;
     height: 100vh;
-    background-color: #000;
+    background-color: #222; /* Se cambia a un color más suave */
     padding: 2rem;
     box-shadow: -5px 0 15px var(--shadow-medium);
     transform: translateX(100%);
@@ -958,6 +959,19 @@ footer {
 @media (max-width: 768px) {
     .navbar {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 6rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        padding: 1rem 0;
+        box-shadow: var(--shadow-medium);
+        z-index: 999;
+    }
+
+    .navbar.navbar-active {
+        display: flex;
     }
 
     .menu-toggler {
