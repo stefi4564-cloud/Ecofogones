@@ -1,27 +1,30 @@
+/* ================================================================= */
+/* 1. VARIABLES Y ESTILOS BASE */
+/* ================================================================= */
 :root {
     /* Paleta de colores */
-    --primary-color: #2e7d32;
-    --secondary-color: #4caf50;
-    --accent-color: #ff9800;
-    --text-color: #333;
-    --light-text-color: #fff;
-    --bg-light: #f8fafc;
-    --card-bg: #fff;
+    --primary-color: #2e7d32; /* Verde principal */
+    --secondary-color: #4caf50; /* Verde secundario, para botones hover */
+    --accent-color: #ff9800; /* Naranja para detalles y contadores */
+    --text-color: #333; /* Color de texto principal (negro) */
+    --light-text-color: #fff; /* Texto blanco */
+    --bg-light: #f8fafc; /* Fondo general */
+    --card-bg: #fff; /* Fondo de tarjetas */
 
     /* Sombras y bordes */
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow-medium: rgba(0, 0, 0, 0.1);
-    --shadow-strong: rgba(0, 0, 0, 0.2);
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
 
     /* Tipografía */
     --font-family: 'Inter', sans-serif;
+    --font-size-base: 16px;
 
-    /* Transiciones */
+    /* Transiciones y animaciones */
     --transition-speed: 0.3s;
 }
 
-/* Estilos de reinicio y generales */
+/* Reinicio de estilos */
 * {
     margin: 0;
     padding: 0;
@@ -30,6 +33,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: var(--font-size-base);
 }
 
 body {
@@ -37,14 +41,12 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-light);
-    /* Ajuste para el carrito siempre visible */
-    padding-right: 400px; /* Ancho del carrito */
+    padding-right: 0; /* Se elimina el padding, ya que el carrito no está siempre visible */
+    overflow-x: hidden;
 }
 
-@media (max-width: 992px) {
-    body {
-        padding-right: 0; /* Sin padding en móviles */
-    }
+body.no-scroll {
+    overflow: hidden;
 }
 
 img {
@@ -55,40 +57,37 @@ img {
 a {
     text-decoration: none;
     color: var(--primary-color);
+    transition: color var(--transition-speed);
 }
 
 ul {
     list-style: none;
 }
 
-/* Tipografía */
 h1, h2, h3 {
     font-weight: 700;
     line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 h1 { font-size: 3rem; }
 h2 { font-size: 2.5rem; }
 h3 { font-size: 1.5rem; }
 
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-}
-
-/* Componentes reutilizables */
+/* Contenedor principal */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/* Botones genéricos */
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
     border-radius: 999px;
     font-weight: 600;
-    transition: background-color var(--transition-speed), transform 0.2s ease-out;
+    transition: all var(--transition-speed) ease-out;
     border: 2px solid transparent;
     cursor: pointer;
     text-align: center;
@@ -116,10 +115,11 @@ h3 { font-size: 1.5rem; }
     transform: translateY(-2px);
 }
 
+/* Botón flotante de WhatsApp */
 .whatsapp-flotante {
     position: fixed;
     bottom: 2rem;
-    right: 420px; /* Ajuste para el carrito siempre visible */
+    right: 2rem; /* Se ajusta la posición */
     background-color: #25d366;
     color: var(--light-text-color);
     width: 60px;
@@ -129,36 +129,31 @@ h3 { font-size: 1.5rem; }
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    box-shadow: 0 4px 12px var(--shadow-strong);
+    box-shadow: 0 4px 12px var(--shadow-medium);
     z-index: 1000;
-    transition: transform 0.2s ease-out, background-color var(--transition-speed);
+    transition: transform var(--transition-speed);
 }
 
 .whatsapp-flotante:hover {
     transform: scale(1.1);
-    background-color: #128c7e;
 }
 
-@media (max-width: 992px) {
-    .whatsapp-flotante {
-        right: 2rem;
-    }
-}
-
-/* Header */
+/* ================================================================= */
+/* 2. HEADER Y NAVEGACIÓN */
+/* ================================================================= */
 #header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px var(--shadow-light);
-    transition: background-color var(--transition-speed);
 }
 
 .logo {
@@ -188,7 +183,7 @@ h3 { font-size: 1.5rem; }
     width: 0;
     height: 2px;
     background-color: var(--primary-color);
-    transition: width var(--transition-speed) ease-in-out;
+    transition: width var(--transition-speed);
 }
 
 .navbar a:hover::after {
@@ -201,27 +196,29 @@ h3 { font-size: 1.5rem; }
     align-items: center;
 }
 
+/* Botón del carrito: Vuelve a ser visible y estático */
 #btn-carrito {
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--primary-color);
+    color: var(--text-color); /* Icono del carrito negro */
     position: relative;
-    /* Ocultar el botón ya que el carrito está siempre visible */
-    display: none;
+    display: block; /* Vuelve a ser visible */
+    transition: transform 0.6s ease-in-out;
 }
 
 #btn-carrito:hover {
     color: var(--secondary-color);
 }
 
+/* Contador del carrito: Vuelve a ser visible, con números blancos */
 #contador-carrito {
     position: absolute;
     top: -5px;
     right: -5px;
     background-color: var(--accent-color);
-    color: var(--light-text-color);
+    color: var(--light-text-color); /* Texto en color blanco */
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -230,10 +227,10 @@ h3 { font-size: 1.5rem; }
     align-items: center;
     font-size: 0.8rem;
     font-weight: 700;
-    display: none;
 }
 
-.producto-agregado {
+/* Animación de rebote para el carrito al agregar un producto */
+#btn-carrito.producto-agregado {
     animation: bounce 0.6s ease-in-out;
 }
 
@@ -243,9 +240,12 @@ h3 { font-size: 1.5rem; }
 }
 
 .menu-toggler {
-    display: none;
+    display: none; /* Oculto por defecto, visible en móviles */
 }
 
+/* ================================================================= */
+/* 3. SECCIONES DE LA PÁGINA (HERO, PRODUCTOS, ETC.) */
+/* ================================================================= */
 /* Sección Hero */
 .hero {
     min-height: 100vh;
@@ -265,7 +265,6 @@ h3 { font-size: 1.5rem; }
 .hero-title {
     color: var(--primary-color);
     font-size: 3.5rem;
-    margin-bottom: 1rem;
 }
 
 .hero-subtitle {
@@ -279,8 +278,8 @@ h3 { font-size: 1.5rem; }
 }
 
 .hero-image img {
-    border-radius: 24px;
-    box-shadow: 0 10px 30px var(--shadow-medium);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
 }
 
 .hero-buttons {
@@ -346,35 +345,27 @@ h3 { font-size: 1.5rem; }
 
 .producto {
     background: var(--card-bg);
-    border-radius: 24px;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 5px 20px var(--shadow-light);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-speed);
     border: 1px solid var(--shadow-light);
     position: relative;
-    will-change: transform;
-}
-
-.producto:hover {
-    /* Animación de elevación eliminada */
-    box-shadow: 0 5px 20px var(--shadow-light);
+    /* Los productos se mantienen estáticos */
+    transform: none;
+    box-shadow: none;
 }
 
 .producto-imagen {
     height: 250px;
     overflow: hidden;
-    position: relative;
 }
 
 .producto-imagen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.producto:hover .producto-imagen img {
-    /* Animación de zoom eliminada */
+    transition: transform var(--transition-speed);
 }
 
 .producto-badge {
@@ -401,6 +392,7 @@ h3 { font-size: 1.5rem; }
     color: var(--primary-color);
 }
 
+/* Se mantiene en color negro */
 .producto-descripcion {
     font-size: 0.9rem;
     color: var(--text-color);
@@ -415,6 +407,7 @@ h3 { font-size: 1.5rem; }
     margin-bottom: 1rem;
 }
 
+/* Se mantiene en color negro */
 .caracteristica {
     background-color: var(--bg-light);
     color: var(--text-color);
@@ -430,21 +423,24 @@ h3 { font-size: 1.5rem; }
     margin-top: 1rem;
 }
 
+/* Se mantiene en color negro */
 .producto-precio {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary-color);
 }
 
+/* Se mantiene en color negro */
 .precio-original {
     font-size: 1rem;
     color: #999;
     text-decoration: line-through;
 }
 
+/* Botón "Agregar al Carrito" con fondo verde y texto negro */
 .agregar-carrito {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
+    background-color: var(--secondary-color); /* Fondo verde */
+    color: var(--text-color); /* Letras negras */
     border: none;
     padding: 1rem;
     border-radius: 999px;
@@ -460,7 +456,8 @@ h3 { font-size: 1.5rem; }
 }
 
 .agregar-carrito:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
 }
 
 /* Sección Acerca de */
@@ -478,8 +475,8 @@ h3 { font-size: 1.5rem; }
 }
 
 .about-image img {
-    border-radius: 24px;
-    box-shadow: 0 10px 30px var(--shadow-medium);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
 }
 
 .about-content {
@@ -489,7 +486,7 @@ h3 { font-size: 1.5rem; }
 /* Sección de Preguntas Frecuentes */
 .faq {
     padding: 8rem 2rem;
-    background-color: #f1f5f9;
+    background-color: var(--bg-light);
 }
 
 .faq-container {
@@ -501,9 +498,13 @@ h3 { font-size: 1.5rem; }
     background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 10px var(--shadow-light);
+    box-shadow: var(--shadow-light);
     margin-bottom: 1rem;
     overflow: hidden;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-medium);
 }
 
 .faq-question {
@@ -524,11 +525,15 @@ h3 { font-size: 1.5rem; }
     transition: transform var(--transition-speed);
 }
 
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
 .faq-answer {
     max-height: 0;
     opacity: 0;
     visibility: hidden;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     padding-top: 0;
     font-size: 1rem;
     color: #666;
@@ -540,10 +545,6 @@ h3 { font-size: 1.5rem; }
     opacity: 1;
     visibility: visible;
     padding-top: 1rem;
-}
-
-.faq-item.active .faq-question i {
-    transform: rotate(180deg);
 }
 
 /* Sección de Reseñas */
@@ -564,17 +565,9 @@ h3 { font-size: 1.5rem; }
 .review-card {
     background-color: var(--card-bg);
     padding: 2rem;
-    border-radius: 24px;
-    box-shadow: 0 5px 20px var(--shadow-medium);
-    position: relative;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
     text-align: left;
-}
-
-.review-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
 }
 
 .review-text {
@@ -616,65 +609,27 @@ h3 { font-size: 1.5rem; }
     gap: 0.75rem;
 }
 
-.contacto-info p i {
-    color: var(--secondary-color);
-}
-
-.envios-info {
-    font-weight: 600;
-    color: var(--primary-color);
-    background-color: #e8f5e9;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-}
-
-.contacto-form-container {
-    background: var(--bg-light);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 5px 20px var(--shadow-medium);
-}
-
-.contacto-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.contacto-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.contacto-form input,
-.contacto-form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: var(--font-family);
-}
-
-.contacto-form textarea {
-    resize: vertical;
-}
-
 .contacto-form .btn-primary {
     width: 100%;
-    font-size: 1.1rem;
 }
 
-.form-note {
-    font-size: 0.8rem;
-    color: #777;
-    margin-top: 1rem;
-}
+/* ================================================================= */
+/* 4. CARRITO DE COMPRAS (MODAL) */
+/* ================================================================= */
 
-
-/* Modal del Carrito de Compras (Ahora siempre visible) */
 .carrito-overlay {
-    /* El overlay se elimina ya que el carrito estará siempre visible */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
     display: none;
+}
+
+.carrito-overlay.active {
+    display: block;
 }
 
 .carrito {
@@ -684,15 +639,19 @@ h3 { font-size: 1.5rem; }
     width: 400px;
     max-width: 90vw;
     height: 100vh;
-    background-color: #000; /* Fondo negro */
+    background-color: #000;
     padding: 2rem;
     box-shadow: -5px 0 15px var(--shadow-medium);
-    transform: translateX(0); /* Ahora está siempre visible */
-    transition: none; /* Se elimina la transición */
-    z-index: 11;
+    transform: translateX(100%);
+    transition: transform var(--transition-speed);
+    z-index: 101;
     display: flex;
     flex-direction: column;
-    color: var(--light-text-color); /* Texto en color blanco */
+    color: var(--light-text-color);
+}
+
+.carrito-visible {
+    transform: translateX(0);
 }
 
 .carrito-header {
@@ -705,10 +664,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .carrito-header h3 {
-    color: var(--light-text-color); /* Título del carrito en blanco */
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    color: var(--light-text-color);
 }
 
 #cerrar-carrito {
@@ -716,9 +672,7 @@ h3 { font-size: 1.5rem; }
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--light-text-color); /* Icono de cerrar en blanco */
-    /* Ocultar el botón si el carrito está siempre visible */
-    display: none;
+    color: var(--light-text-color);
 }
 
 #lista-carrito {
@@ -745,16 +699,11 @@ h3 { font-size: 1.5rem; }
 
 .carrito-item-info {
     flex-grow: 1;
-    color: var(--light-text-color); /* Info del item en blanco */
+    color: var(--light-text-color);
 }
 
 .carrito-item-nombre {
     font-weight: 600;
-}
-
-.carrito-item-precio {
-    color: var(--light-text-color); /* Precio en blanco */
-    font-weight: 500;
 }
 
 .carrito-item-cantidad {
@@ -768,7 +717,7 @@ h3 { font-size: 1.5rem; }
 .cantidad-btn {
     background: none;
     border: 1px solid #ccc;
-    color: var(--light-text-color); /* Botones en blanco */
+    color: var(--light-text-color);
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -777,7 +726,7 @@ h3 { font-size: 1.5rem; }
 }
 
 .cantidad-btn:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .eliminar-item {
@@ -790,7 +739,7 @@ h3 { font-size: 1.5rem; }
 
 #carrito-vacio {
     text-align: center;
-    color: var(--light-text-color); /* Texto en blanco */
+    color: var(--light-text-color);
     margin-top: 2rem;
     display: none;
 }
@@ -798,7 +747,7 @@ h3 { font-size: 1.5rem; }
 .resumen-pedido {
     border-top: 1px solid #333;
     padding-top: 1.5rem;
-    color: var(--light-text-color); /* Resumen en blanco */
+    color: var(--light-text-color);
 }
 
 .resumen-linea {
@@ -811,7 +760,7 @@ h3 { font-size: 1.5rem; }
 .resumen-linea.total-linea {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--secondary-color); /* Total en color verde */
+    color: var(--secondary-color);
     margin-top: 1rem;
 }
 
@@ -822,12 +771,6 @@ h3 { font-size: 1.5rem; }
 .cupon-container {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-}
-
-.label-cupon {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
 }
 
 .cupon-input-container {
@@ -841,7 +784,7 @@ h3 { font-size: 1.5rem; }
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    background-color: var(--light-text-color); /* Input de cupón en blanco */
+    background-color: var(--light-text-color);
     font-family: var(--font-family);
     color: var(--text-color);
 }
@@ -866,7 +809,6 @@ h3 { font-size: 1.5rem; }
 .btn-vaciar {
     background-color: #e74c3c;
     color: var(--light-text-color);
-    border: none;
     padding: 1rem;
     border-radius: 999px;
     font-weight: 600;
@@ -881,7 +823,6 @@ h3 { font-size: 1.5rem; }
 .btn-finalizar-compra {
     background-color: var(--primary-color);
     color: var(--light-text-color);
-    border: none;
     padding: 1rem;
     border-radius: 999px;
     font-weight: 600;
@@ -893,7 +834,9 @@ h3 { font-size: 1.5rem; }
     background-color: var(--secondary-color);
 }
 
-/* Pie de página */
+/* ================================================================= */
+/* 5. FOOTER */
+/* ================================================================= */
 footer {
     background-color: #222;
     color: #ccc;
@@ -930,28 +873,14 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animaciones */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Diseño Responsivo */
+/* ================================================================= */
+/* 6. DISEÑO RESPONSIVO */
+/* ================================================================= */
 @media (max-width: 992px) {
     .hero {
         flex-direction: column;
         text-align: center;
         padding-top: 6rem;
-    }
-
-    .hero-content {
-        max-width: none;
     }
 
     .hero-buttons {
@@ -961,6 +890,10 @@ footer {
     .about {
         flex-direction: column;
         text-align: center;
+    }
+
+    .whatsapp-flotante {
+        right: 2rem;
     }
 }
 
@@ -975,8 +908,13 @@ footer {
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
+        color: var(--text-color);
     }
-
+    
+    #header {
+        justify-content: space-between;
+    }
+    
     .hero-image {
         max-width: 100%;
     }
@@ -985,12 +923,20 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .carrito {
-        width: 100%;
-    }
-
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
+}
+
+/* Animaciones */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
